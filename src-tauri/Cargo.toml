@@ -1,0 +1,54 @@
+[package]
+name = "keyhaven"
+version = "0.3.0"
+description = "Keyhaven - offline-first, cross-platform encrypted password manager"
+authors = ["Keyhaven"]
+edition = "2021"
+rust-version = "1.77"
+
+# The library is what the binary (and Tauri mobile targets) call into.
+[lib]
+name = "keyhaven_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-fs = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-clipboard-manager = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# DEFLATE/gzip compression of the JSON-serialized decrypted vault model before
+# it is encrypted (smaller payloads; the compression is purely a size optimization).
+flate2 = "1"
+
+# --- Cryptographic core (audited RustCrypto crates; no custom crypto) ---
+# Argon2id memory-hard key derivation.
+argon2 = "0.5"
+# XChaCha20-Poly1305 authenticated encryption (24-byte nonce).
+chacha20poly1305 = "0.10"
+# CSPRNG (OsRng) backed by the OS via getrandom.
+rand = "0.8"
+getrandom = "0.2"
+# Best-effort zeroing of keys/secrets from memory.
+zeroize = { version = "1", features = ["zeroize_derive"] }
+
+# --- Entry identifiers and timestamps (task 6.1) ---
+# UUID v4 (CSPRNG-backed via getrandom) for stable entry/field identifiers.
+uuid = { version = "1", features = ["v4"] }
+# ISO-8601 / RFC-3339 wall-clock timestamps for created/updated_at. `clock`
+# enables `Utc::now()`; default features are disabled to keep the surface small.
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+
+# Windows-only: write the clipboard with "exclude from history/cloud" markers so
+# copied secrets never enter Clipboard History (Win+V) or Cloud Clipboard.
+[target.'cfg(windows)'.dependencies]
+clipboard-win = "5"
+
+[features]
+# This feature is used for production builds or when a dev server is not specified,
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]

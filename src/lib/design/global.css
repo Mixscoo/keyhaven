@@ -1,0 +1,158 @@
+/*
+ * Keyhaven global baseline styles.
+ *
+ * Provides the calm, uncluttered foundation: a soft off-white canvas,
+ * legible slate typography with a clear hierarchy and generous line-height,
+ * sensible form/control defaults, visible focus rings, and full
+ * `prefers-reduced-motion` handling (non-essential animation disabled).
+ *
+ * All values come from semantic tokens in tokens.css, which is imported
+ * ahead of this file at the app entry point (src/main.ts).
+ */
+
+/* ---- Reset / box model -------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--kh-bg);
+  color: var(--kh-text);
+  font-family: var(--kh-font);
+  font-size: var(--kh-font-size-md);
+  font-weight: var(--kh-font-weight-regular);
+  line-height: var(--kh-line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  height: 100%;
+}
+
+/* ---- Typography hierarchy ---------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--kh-space-3);
+  font-weight: var(--kh-font-weight-semibold);
+  line-height: var(--kh-line-height-tight);
+  color: var(--kh-text);
+}
+
+h1 {
+  font-size: var(--kh-font-size-2xl);
+}
+
+h2 {
+  font-size: var(--kh-font-size-xl);
+}
+
+h3 {
+  font-size: var(--kh-font-size-lg);
+}
+
+h4 {
+  font-size: var(--kh-font-size-md);
+  font-weight: var(--kh-font-weight-medium);
+}
+
+p {
+  margin: 0 0 var(--kh-space-4);
+}
+
+small {
+  font-size: var(--kh-font-size-sm);
+  color: var(--kh-text-muted);
+}
+
+a {
+  color: var(--kh-accent);
+  text-decoration: none;
+  transition: color var(--kh-motion-fast) var(--kh-ease);
+}
+
+a:hover {
+  color: var(--kh-accent-hover);
+  text-decoration: underline;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--kh-font-mono);
+  font-size: 0.95em;
+}
+
+/* ---- Form controls ------------------------------------------------------ */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ---- Focus visibility ---------------------------------------------------- */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--kh-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--kh-radius-sm);
+}
+
+/* ---- Selection ---------------------------------------------------------- */
+
+::selection {
+  background: var(--kh-accent-subtle);
+  color: var(--kh-text);
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+/* Respect users who prefer reduced motion: disable non-essential animation
+ * and transitions, and prevent smooth-scroll jumps. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

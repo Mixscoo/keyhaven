@@ -1,0 +1,133 @@
+/*
+ * Keyhaven design tokens.
+ *
+ * Calm, minimalist, light-theme-first palette with a soft blue accent.
+ *
+ * Structure (so a future dark theme is feasible without rework):
+ *   1. Raw palette  — concrete color values, theme-agnostic primitives.
+ *   2. Semantic tokens — the variables the rest of the app consumes
+ *      (e.g. --kh-bg, --kh-text). These map onto the raw palette.
+ *
+ * To add a dark theme later, define a `[data-theme="dark"]` (and/or a
+ * `@media (prefers-color-scheme: dark)`) block that re-points ONLY the
+ * semantic tokens at darker raw values. No component CSS needs to change
+ * because components reference semantic tokens, never raw values directly.
+ *
+ * Accessibility: text/background pairings below target WCAG AA contrast.
+ *   - #1F2933 on #F7F9FC  ~= 13.8:1 (primary text, well above AA).
+ *   - #5B6B7B on #F7F9FC  ~=  4.8:1 (secondary text, meets AA for normal text).
+ *   - #FFFFFF on #3B82C4  ~=  4.1:1 (meets AA for large/bold text such as
+ *     button labels and the AA 3:1 threshold for UI components/focus rings).
+ *   Final conformance still requires manual assistive-technology testing.
+ */
+
+:root {
+  /* ----------------------------------------------------------------------
+   * 1. Raw palette (primitives) — do not consume these directly in
+   *    components; use the semantic tokens below.
+   * -------------------------------------------------------------------- */
+
+  /* Neutrals (cool slate ramp) */
+  --kh-palette-white: #ffffff;
+  --kh-palette-offwhite: #f7f9fc;
+  --kh-palette-gray-100: #eef2f7;
+  --kh-palette-gray-200: #e3e8ef;
+  --kh-palette-gray-300: #cdd5df;
+  --kh-palette-slate-400: #8896a5;
+  --kh-palette-slate-500: #5b6b7b;
+  --kh-palette-slate-700: #34404d;
+  --kh-palette-slate-900: #1f2933;
+
+  /* Accent (calm, desaturated blue) */
+  --kh-palette-blue-500: #3b82c4;
+  --kh-palette-blue-600: #2f6da8;
+  --kh-palette-blue-100: #e7f0f9; /* tint for selection/hover backgrounds */
+
+  /* Status (low-saturation, easy on the eyes) */
+  --kh-palette-green-500: #4f9d69;
+  --kh-palette-green-50: #eef6f1;
+  --kh-palette-amber-500: #c9961f;
+  --kh-palette-amber-50: #f8f1df;
+  --kh-palette-red-500: #c0564b;
+  --kh-palette-red-50: #f7ebea;
+
+  /* ----------------------------------------------------------------------
+   * 2. Semantic tokens — consumed throughout the app.
+   * -------------------------------------------------------------------- */
+
+  /* Backgrounds / surfaces */
+  --kh-bg: var(--kh-palette-offwhite);
+  --kh-surface: var(--kh-palette-white);
+  --kh-surface-raised: var(--kh-palette-white);
+  --kh-surface-sunken: var(--kh-palette-gray-100);
+
+  /* Accent (used sparingly for primary actions / selection) */
+  --kh-accent: var(--kh-palette-blue-500);
+  --kh-accent-hover: var(--kh-palette-blue-600);
+  --kh-accent-subtle: var(--kh-palette-blue-100);
+  --kh-on-accent: var(--kh-palette-white);
+
+  /* Text */
+  --kh-text: var(--kh-palette-slate-900);
+  --kh-text-muted: var(--kh-palette-slate-500);
+  --kh-text-subtle: var(--kh-palette-slate-400);
+
+  /* Borders / dividers */
+  --kh-border: var(--kh-palette-gray-200);
+  --kh-border-strong: var(--kh-palette-gray-300);
+
+  /* Status — foreground + matching subtle background */
+  --kh-success: var(--kh-palette-green-500);
+  --kh-success-bg: var(--kh-palette-green-50);
+  --kh-warning: var(--kh-palette-amber-500);
+  --kh-warning-bg: var(--kh-palette-amber-50);
+  --kh-danger: var(--kh-palette-red-500);
+  --kh-danger-bg: var(--kh-palette-red-50);
+
+  /* Focus ring */
+  --kh-focus-ring: var(--kh-palette-blue-500);
+
+  /* Radius (soft, modern) */
+  --kh-radius-sm: 8px;
+  --kh-radius: 12px;
+  --kh-radius-lg: 16px;
+  --kh-radius-pill: 999px;
+
+  /* Soft elevation (low-opacity, short-spread; no harsh drop shadows) */
+  --kh-shadow-sm: 0 1px 2px rgba(31, 41, 51, 0.05);
+  --kh-shadow: 0 1px 2px rgba(31, 41, 51, 0.04), 0 4px 12px rgba(31, 41, 51, 0.06);
+  --kh-shadow-lg: 0 8px 28px rgba(31, 41, 51, 0.12);
+
+  /* Spacing scale (8px base, plus a 4px half-step) */
+  --kh-space-1: 4px;
+  --kh-space-2: 8px;
+  --kh-space-3: 12px;
+  --kh-space-4: 16px;
+  --kh-space-5: 24px;
+  --kh-space-6: 32px;
+  --kh-space-7: 48px;
+  --kh-space-8: 64px;
+
+  /* Typography */
+  --kh-font: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+  --kh-font-mono: "SF Mono", "Segoe UI Mono", "Roboto Mono", ui-monospace, monospace;
+
+  --kh-font-size-xs: 0.75rem;
+  --kh-font-size-sm: 0.875rem;
+  --kh-font-size-md: 1rem;
+  --kh-font-size-lg: 1.125rem;
+  --kh-font-size-xl: 1.5rem;
+  --kh-font-size-2xl: 2rem;
+
+  --kh-font-weight-regular: 400;
+  --kh-font-weight-medium: 500;
+  --kh-font-weight-semibold: 600;
+
+  --kh-line-height: 1.5;
+  --kh-line-height-tight: 1.25;
+
+  /* Motion (short, ease-out; respect prefers-reduced-motion in global.css) */
+  --kh-motion-fast: 120ms;
+  --kh-motion: 180ms;
+  --kh-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}

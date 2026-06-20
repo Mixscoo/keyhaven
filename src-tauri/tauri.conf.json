@@ -1,0 +1,57 @@
+{
+  "productName": "Keyhaven",
+  "version": "0.3.0",
+  "identifier": "com.keyhaven.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Keyhaven",
+        "width": 1024,
+        "height": 720,
+        "minWidth": 720,
+        "minHeight": 540,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: asset: https://asset.localhost; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' ipc: http://ipc.localhost; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'",
+      "capabilities": ["default"]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["deb", "rpm", "appimage", "app", "dmg", "nsis", "msi"],
+    "category": "Utility",
+    "shortDescription": "Offline-first encrypted password manager",
+    "longDescription": "Keyhaven stores credentials in a single, portable, strongly-encrypted vault file. It operates fully offline with zero network communication.",
+    "publisher": "Keyhaven",
+    "copyright": "Keyhaven",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "linux": {
+      "deb": {
+        "depends": []
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "10.13"
+    },
+    "windows": {
+      "nsis": {
+        "installMode": "perMachine"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Keyhaven">
+  <defs>
+    <linearGradient id="kh-tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a90d0" />
+      <stop offset="1" stop-color="#2f6da8" />
+    </linearGradient>
+  </defs>
+  <!-- Full-bleed rounded tile (transparent outside the corners — no white box) -->
+  <rect width="64" height="64" rx="15" fill="url(#kh-tile)" />
+  <!-- Keyhole: head ring + tapered stem, as one mark -->
+  <g fill="#ffffff">
+    <circle cx="32" cy="25" r="8.5" />
+    <path d="M28.5 29 L35.5 29 L38.5 46 L25.5 46 Z" />
+  </g>
+</svg>

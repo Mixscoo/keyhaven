@@ -1,0 +1,22 @@
+{
+  "identifier": "default",
+  "description": "Keyhaven capability set. Deliberately grants NO networking permissions (no http plugin is registered). Filesystem access is dialog-scoped: paths come from the native open/save dialog, and only file read/write/exists/rename are permitted. Clipboard is limited to text read/write/clear for the copy-with-auto-clear feature.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:event:default",
+    "core:app:default",
+    "core:path:default",
+    "dialog:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    "fs:allow-read-file",
+    "fs:allow-write-file",
+    "fs:allow-exists",
+    "fs:allow-rename",
+    "clipboard-manager:allow-read-text",
+    "clipboard-manager:allow-write-text",
+    "clipboard-manager:allow-clear"
+  ]
+}

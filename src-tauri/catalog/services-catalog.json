@@ -1,0 +1,1677 @@
+[
+  {
+    "id": "google",
+    "name": "Google",
+    "icon": "google.svg",
+    "aliases": [
+      "gmail",
+      "gsuite",
+      "google workspace",
+      "youtube account"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#4285F4\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Google</title><path d=\"M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z\"/></svg>",
+    "color": "#4285f4",
+    "icon_data": ""
+  },
+  {
+    "id": "facebook",
+    "name": "Facebook",
+    "icon": "facebook.svg",
+    "aliases": [
+      "fb",
+      "meta"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0866FF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Facebook</title><path d=\"M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z\"/></svg>",
+    "color": "#0866ff",
+    "icon_data": ""
+  },
+  {
+    "id": "instagram",
+    "name": "Instagram",
+    "icon": "instagram.svg",
+    "aliases": [
+      "ig",
+      "insta",
+      "meta"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FF0069\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Instagram</title><path d=\"M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077\"/></svg>",
+    "color": "#ff0069",
+    "icon_data": ""
+  },
+  {
+    "id": "x",
+    "name": "X (Twitter)",
+    "icon": "x.svg",
+    "aliases": [
+      "twitter",
+      "tweet"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>X</title><path d=\"M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "linkedin",
+    "name": "LinkedIn",
+    "icon": "linkedin.svg",
+    "aliases": [
+      "li"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADCUlEQVR4nO2bO2zaUBSGf1dFCh1CqDOkyUBaS+mQSDgrQ+Is2RDZyJg1nRjYgaEbA1Mzhm4ZG7FFlWKpEksqxZWaoZVcCUWlSxAxi5EY3KEFEWyIr2M4+PFNGN9rn/P5Pi2ZMwwDQeYZdQDUhAKoA6Dm+bgTXL5WBJADEJtZNNNBA1ABUDHK6fvRkyYBXL62BEAGkJx6aLMhBqAA4ACAOHrSqgvk4J/kh0n+b9UPGCfAr5hysxLg9T4/CVNu4SzgtKIk8JCEZQCArN5BVluuBTVLmAVIAo/q4TYS8ejgvwI20GjrODq79pwIpi4gCTwuj1MPku+TiEdxeZyCJPCuBTcLmARUD7ddKTNP2BYgCbzlkx8lEY96qhUwCFi2fVGWstQEfhq0LUBW72xflKUsNQwCWmi09UfLNdq6p6ZCpi5wdHbtSpl5gkmArLawd1K3bAmNto69k7qnnj7gYCUoqy2sv/8c3KVwH1lteTbpYRwLmDb9xZQkLENparjXewAApdkZ/HYDZgFGOT3xPJev2S5fuviJ4sWPwbEk8MjtvEFmc2XiPRptHdWrW1S+/HqyjLloAesvX6CaFbFrcwmdiEdR2N9Abuc1cuc3qF7dOr43uQBxdRHyuxRiCxHmurGFCE6z/95zOpVAuhQW15wnP8xpVnS8ASMVkNlceXLyfYr7bx3V881maFfgIa4uMtfzjQAAONh6xVyHfBAcRev2oPzuDI6XohEkbT5ZJ+PA3AjQur2xU5ok8Khkth4VIa55tAto3R6kD/WxU5mstmztMp0MqHMhIHd+A6XZmVhGaXbw8avzBc84yAX0l7V2GB4b3IJcwKfvf2yXVZqa6/cnF0C9pSYX4ObW1gnkAliYRmshFxD4LkBNKIA6AGpCAdQBUBMKoA6AmlAAdQDUhAKoA6CGG/1miMvXfP0RkVFOc8PHgW8BoQDqAKixEuD+i7f5wZSblYDKDAKhwpSbaRYAAC5fU+C/74a+GeW0rY+mAEACUII/uoMGoGSVPDCmBQSJcBagDoCawAv4CyJz5Ou100U7AAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "icon": "microsoft.svg",
+    "aliases": [
+      "msft",
+      "outlook",
+      "hotmail",
+      "live",
+      "office365",
+      "azure ad"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAABcUlEQVR4nO3YMQ1CQRBAwTsEkGABRQjAC2YQQAtisECCgcPAr/nFmym32mxetfN7Oa8Rc3y859b89hq5Wxz2XoB9CSBOAHECiBNAnADiBBAngDgBxAkgTgBxAogTQJwA4gQQJ4A4AcQJIE4AcQKIE0CcAOIEECeAOAHECSBOAHECiBNAnADiBBAngDgBxAkgTgBxAogTQJwA4gQQJ4A4AcQJIE4AcQKIE0CcAOIEECeAOAHECSBOAHECiBNAnADiBBAngDgBxAkgTgBxAgAAAEiZ4/5Zey/xd9fT3Bqv58jdwh8gTgBxAogTQJwA4gQQJ4A4AcQJIE4AcQKIE0CcAOIEECeAOAHECSBOAHECiBNAnADiBBAngDgBxAkgTgBxAogTQJwA4gQQJ4A4AcQJIE4AcQKIE0CcAOIEECeAOAHECSBOAHECiBNAnADiBBAngDgBxAkgTgBxAogTQJwA4gQQJ4A4AcQJIE4AcQKIE0DcD7bzDOLQOL8WAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "icon": "apple.svg",
+    "aliases": [
+      "icloud",
+      "apple id",
+      "itunes"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Apple</title><path d=\"M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "icon": "amazon.svg",
+    "aliases": [
+      "aws account",
+      "prime"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,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"
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "icon": "netflix.svg",
+    "aliases": [
+      "nflx"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#E50914\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Netflix</title><path d=\"m5.398 0 8.348 23.602c2.346.059 4.856.398 4.856.398L10.113 0H5.398zm8.489 0v9.172l4.715 13.33V0h-4.715zM5.398 1.5V24c1.873-.225 2.81-.312 4.715-.398V14.83L5.398 1.5z\"/></svg>",
+    "color": "#e50914",
+    "icon_data": ""
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "icon": "spotify.svg",
+    "aliases": [
+      "music"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#1ED760\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Spotify</title><path d=\"M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z\"/></svg>",
+    "color": "#1ed760",
+    "icon_data": ""
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "icon": "github.svg",
+    "aliases": [
+      "gh",
+      "git"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#181717\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>GitHub</title><path d=\"M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\"/></svg>",
+    "color": "#181717",
+    "icon_data": ""
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "icon": "gitlab.svg",
+    "aliases": [
+      "git"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FC6D26\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>GitLab</title><path d=\"m23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z\"/></svg>",
+    "color": "#fc6d26",
+    "icon_data": ""
+  },
+  {
+    "id": "dropbox",
+    "name": "Dropbox",
+    "icon": "dropbox.svg",
+    "aliases": [
+      "db",
+      "storage"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0061FF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Dropbox</title><path d=\"M6 1.807L0 5.629l6 3.822 6.001-3.822L6 1.807zM18 1.807l-6 3.822 6 3.822 6-3.822-6-3.822zM0 13.274l6 3.822 6.001-3.822L6 9.452l-6 3.822zM18 9.452l-6 3.822 6 3.822 6-3.822-6-3.822zM6 18.371l6.001 3.822 6-3.822-6-3.822L6 18.371z\"/></svg>",
+    "color": "#0061ff",
+    "icon_data": ""
+  },
+  {
+    "id": "slack",
+    "name": "Slack",
+    "icon": "slack.svg",
+    "aliases": [
+      "chat",
+      "work"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Website",
+        "type": "url",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAiCAYAAADVhWD8AAADZklEQVRYhcWXTW8bVRSGn3NdoaxgLEQlJFrGe2p5AyF8VMmSSkV4V2XTyS+wvebDYxDruL+AdBOyMxSpsKsXBGgkJCvqgp1vo0qVqCq7u0ho7mExiTuuPfadtIVXGsm+c+acd2bOPHNGKKDV/ScNRZtACFiMiQ/WXr2Zjan+8lUDpzEQABYkPrzy9c2ZZHMkvkbe/XUUich3MwlEW3c/KHcBqj9/0UYlnlMm8jFkfM2ISHveumpmXSWaf7Rr+tQ452uG9NbMU1C7Mwo4vhE4TXJipOZTwPvKAOO8HSsrBAXy5Mr/Nql2XkTBRfI2c/ejchenHcD+72YADj4uxwcfBhVjdGr7Y61sX4SZmQZ+//dR6HPg8xoIe3EQQDCox5M8EzOr+08aTjV2zq8Z39sfW4zsHKy9VriXqrfb25BEDoLq7S/tKRgNpEBTtCtS6KkIcRqv/jbyYsi0EdeESa0QdOednz5fT3tGpFEkYVZT0FuiWi8O8gAoJdM2AAJeUMpRCj0fnfsnt45AaABU6T+HGTvYKI8Hn8SWXDDqYFkSBWsAnNMbZ7ZiTJz5l9PMprvUTOI6BuDPy+UfVHVLlaVnkJEV1VZ2hDi88k1XlS2egtGCay16Yyvad4nbuHf1236B2i9fU/PMMPgsIFiZasaK3bPzYp5dz2rUC4NjAq+mfrM+mOSZmLl/cbOhSAw6lUSNq5wWvn9xs61I8zRGIH77aHeqTx7fqm4rRODHLAVrhJ3Xrx52BGB4YTMSYWaKy5pJjRDPJtNW5ej7bsZIIQhOZIhSznhA7+RsZyQ8hd6ZjQA4jU7e2roQesMwClgw6QE87NXy9ntJkBR6qPZzYsZpvxwvvf8njZg7DS6TovaEwPOnOIVCMHS50PMwk2gKvcqDvb6q1jNXyKaNuRsXSXj+08OuS3QLf3iOQfuauI036vf6Xt9Nw/BaKM4M8/aHR7ve31+LVORTZake9Wrr08mPbbn+l/U9vtAMvEgPe7VQSu5OdktKrwwf37q0/Z+byZMizUc/VmOf2JduBsAI173i/NKtnJkfAJoPzCl5manYnTHkPa5qYRn0cqFa3AwsAKMmrdPfedBzSak1b/1ZFeLD8K1r6yLSRiRE1apqp/Jgr5+N+bt3KTIlrotKqKIDl5Q65+sDLwj+C522aNEorPCIAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "icon": "discord.svg",
+    "aliases": [
+      "dis",
+      "chat",
+      "gaming"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#5865F2\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Discord</title><path d=\"M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z\"/></svg>",
+    "color": "#5865f2",
+    "icon_data": ""
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "icon": "reddit.svg",
+    "aliases": [
+      "sub",
+      "forum"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FF4500\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Reddit</title><path d=\"M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z\"/></svg>",
+    "color": "#ff4500",
+    "icon_data": ""
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "icon": "paypal.svg",
+    "aliases": [
+      "pp",
+      "payments"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#002991\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>PayPal</title><path d=\"M15.607 4.653H8.941L6.645 19.251H1.82L4.862 0h7.995c3.754 0 6.375 2.294 6.473 5.513-.648-.478-2.105-.86-3.722-.86m6.57 5.546c0 3.41-3.01 6.853-6.958 6.853h-2.493L11.595 24H6.74l1.845-11.538h3.592c4.208 0 7.346-3.634 7.153-6.949a5.24 5.24 0 0 1 2.848 4.686M9.653 5.546h6.408c.907 0 1.942.222 2.363.541-.195 2.741-2.655 5.483-6.441 5.483H8.714Z\"/></svg>",
+    "color": "#002991",
+    "icon_data": ""
+  },
+  {
+    "id": "ebay",
+    "name": "eBay",
+    "icon": "ebay.svg",
+    "aliases": [
+      "auction",
+      "shop"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#E53238\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>eBay</title><path d=\"M6.056 12.132v-4.92h1.2v3.026c.59-.703 1.402-.906 2.202-.906 1.34 0 2.828.904 2.828 2.855 0 .233-.015.457-.06.668.24-.953 1.274-1.305 2.896-1.344.51-.018 1.095-.018 1.56-.018v-.135c0-.885-.556-1.244-1.53-1.244-.72 0-1.245.3-1.305.81h-1.275c.136-1.29 1.5-1.62 2.686-1.62 1.064 0 1.995.27 2.415 1.02l-.436-.84h1.41l2.055 4.125 2.055-4.126H24l-3.72 7.305h-1.346l1.07-2.04-2.33-4.38c.13.255.2.555.2.93v2.46c0 .346.01.69.04 1.005H16.8a6.543 6.543 0 01-.046-.765c-.603.734-1.32.96-2.32.96-1.48 0-2.272-.78-2.272-1.695 0-.15.015-.284.037-.405-.3 1.246-1.36 2.086-2.767 2.086-.87 0-1.694-.315-2.2-.93 0 .24-.015.494-.04.734h-1.18c.02-.39.04-.855.04-1.245v-1.05h-4.83c.065 1.095.818 1.74 1.853 1.74.718 0 1.355-.3 1.568-.93h1.24c-.24 1.29-1.61 1.725-2.79 1.725C.95 15.009 0 13.822 0 12.232c0-1.754.982-2.91 3.116-2.91 1.688 0 2.93.886 2.94 2.806v.005zm9.137.183c-1.095.034-1.77.233-1.77.95 0 .465.36.97 1.305.97 1.26 0 1.935-.69 1.935-1.814v-.13c-.45 0-.99.006-1.484.022h.012zm-6.06 1.875c1.11 0 1.876-.806 1.876-2.02s-.768-2.02-1.893-2.02c-1.11 0-1.89.806-1.89 2.02s.765 2.02 1.875 2.02h.03zm-4.35-2.514c-.044-1.125-.854-1.546-1.725-1.546-.944 0-1.694.474-1.815 1.546z\"/></svg>",
+    "color": "#e53238",
+    "icon_data": ""
+  },
+  {
+    "id": "whatsapp",
+    "name": "WhatsApp",
+    "icon": "whatsapp.svg",
+    "aliases": [
+      "wa",
+      "meta",
+      "messenger"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#25D366\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>WhatsApp</title><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z\"/></svg>",
+    "color": "#25d366",
+    "icon_data": ""
+  },
+  {
+    "id": "telegram",
+    "name": "Telegram",
+    "icon": "telegram.svg",
+    "aliases": [
+      "tg",
+      "messenger"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#26A5E4\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Telegram</title><path d=\"M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z\"/></svg>",
+    "color": "#26a5e4",
+    "icon_data": ""
+  },
+  {
+    "id": "signal",
+    "name": "Signal",
+    "icon": "signal.svg",
+    "aliases": [
+      "messenger",
+      "private"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "PIN",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#3B45FD\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Signal</title><path d=\"M12 0q-.934 0-1.83.139l.17 1.111a11 11 0 0 1 3.32 0l.172-1.111A12 12 0 0 0 12 0M9.152.34A12 12 0 0 0 5.77 1.742l.584.961a10.8 10.8 0 0 1 3.066-1.27zm5.696 0-.268 1.094a10.8 10.8 0 0 1 3.066 1.27l.584-.962A12 12 0 0 0 14.848.34M12 2.25a9.75 9.75 0 0 0-8.539 14.459c.074.134.1.292.064.441l-1.013 4.338 4.338-1.013a.62.62 0 0 1 .441.064A9.7 9.7 0 0 0 12 21.75c5.385 0 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25m-7.092.068a12 12 0 0 0-2.59 2.59l.909.664a11 11 0 0 1 2.345-2.345zm14.184 0-.664.909a11 11 0 0 1 2.345 2.345l.909-.664a12 12 0 0 0-2.59-2.59M1.742 5.77A12 12 0 0 0 .34 9.152l1.094.268a10.8 10.8 0 0 1 1.269-3.066zm20.516 0-.961.584a10.8 10.8 0 0 1 1.27 3.066l1.093-.268a12 12 0 0 0-1.402-3.383M.138 10.168A12 12 0 0 0 0 12q0 .934.139 1.83l1.111-.17A11 11 0 0 1 1.125 12q0-.848.125-1.66zm23.723.002-1.111.17q.125.812.125 1.66c0 .848-.042 1.12-.125 1.66l1.111.172a12.1 12.1 0 0 0 0-3.662M1.434 14.58l-1.094.268a12 12 0 0 0 .96 2.591l-.265 1.14 1.096.255.36-1.539-.188-.365a10.8 10.8 0 0 1-.87-2.35m21.133 0a10.8 10.8 0 0 1-1.27 3.067l.962.584a12 12 0 0 0 1.402-3.383zm-1.793 3.848a11 11 0 0 1-2.345 2.345l.664.909a12 12 0 0 0 2.59-2.59zm-19.959 1.1L.357 21.48a1.8 1.8 0 0 0 2.162 2.161l1.954-.455-.256-1.095-1.953.455a.675.675 0 0 1-.81-.81l.454-1.954zm16.832 1.769a10.8 10.8 0 0 1-3.066 1.27l.268 1.093a12 12 0 0 0 3.382-1.402zm-10.94.213-1.54.36.256 1.095 1.139-.266c.814.415 1.683.74 2.591.961l.268-1.094a10.8 10.8 0 0 1-2.35-.869zm3.634 1.24-.172 1.111a12.1 12.1 0 0 0 3.662 0l-.17-1.111q-.812.125-1.66.125a11 11 0 0 1-1.66-.125\"/></svg>",
+    "color": "#3b45fd",
+    "icon_data": ""
+  },
+  {
+    "id": "zoom",
+    "name": "Zoom",
+    "icon": "zoom.svg",
+    "aliases": [
+      "meeting",
+      "video"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0B5CFF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Zoom</title><path d=\"M5.033 14.649H.743a.74.74 0 0 1-.686-.458.74.74 0 0 1 .16-.808L3.19 10.41H1.06A1.06 1.06 0 0 1 0 9.35h3.957c.301 0 .57.18.686.458a.74.74 0 0 1-.161.808L1.51 13.59h2.464c.585 0 1.06.475 1.06 1.06zM24 11.338c0-1.14-.927-2.066-2.066-2.066-.61 0-1.158.265-1.537.686a2.061 2.061 0 0 0-1.536-.686c-1.14 0-2.066.926-2.066 2.066v3.311a1.06 1.06 0 0 0 1.06-1.06v-2.251a1.004 1.004 0 0 1 2.013 0v2.251c0 .586.474 1.06 1.06 1.06v-3.311a1.004 1.004 0 0 1 2.012 0v2.251c0 .586.475 1.06 1.06 1.06zM16.265 12a2.728 2.728 0 1 1-5.457 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0zm-4.82 0a2.728 2.728 0 1 1-5.458 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0z\"/></svg>",
+    "color": "#0b5cff",
+    "icon_data": ""
+  },
+  {
+    "id": "steam",
+    "name": "Steam",
+    "icon": "steam.svg",
+    "aliases": [
+      "valve",
+      "games"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Steam</title><path d=\"M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "twitch",
+    "name": "Twitch",
+    "icon": "twitch.svg",
+    "aliases": [
+      "stream",
+      "amazon"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#9146FF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Twitch</title><path d=\"M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z\"/></svg>",
+    "color": "#9146ff",
+    "icon_data": ""
+  },
+  {
+    "id": "tiktok",
+    "name": "TikTok",
+    "icon": "tiktok.svg",
+    "aliases": [
+      "bytedance",
+      "douyin"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>TikTok</title><path d=\"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "pinterest",
+    "name": "Pinterest",
+    "icon": "pinterest.svg",
+    "aliases": [
+      "pin",
+      "boards"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#BD081C\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Pinterest</title><path d=\"M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z\"/></svg>",
+    "color": "#bd081c",
+    "icon_data": ""
+  },
+  {
+    "id": "snapchat",
+    "name": "Snapchat",
+    "icon": "snapchat.svg",
+    "aliases": [
+      "snap"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FFFC00\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Snapchat</title><path d=\"M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z\"/></svg>",
+    "color": "#fffc00",
+    "icon_data": ""
+  },
+  {
+    "id": "yahoo",
+    "name": "Yahoo",
+    "icon": "yahoo.svg",
+    "aliases": [
+      "ymail",
+      "yahoo mail"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACcklEQVRogdWZv2/TUBDHv/fSoUsld4s8hSl0QTbK0jH9AwI7LNCpW/kDKvk/YIQFuiAx0pSdsDFgyd4gLPGUMlpiYQmPwYrUgpPcvR928pkv790n8d07vxAAJJHuLTQuoREBCLDtEK46hBdJTgUlke4t/iDDLiR+l7KjEKuFxkvsXvIAECw0LhU0HrediTEa0V4T+0Qj4DDkxU5ei5YOGhE4OQMChkA2lq+t5B+REY14yQNA9lG+vneBh494ceUcKL7K1/cq0O0DvQEvdvLKbA+vAsdP+bGz1GwPbwJBCMQjXmw2rh4hE7wJcB8dQNw67+BN4OSMF1ek5t8+4EmgNxC0ToPefxsvArGgdWbXdns5F5AU78yg7/+LcwFJ67Qp3iXOBY6GvLhvn+yKd4lTAdHcY/nsL3EqIJl7vk/c7OlMIAj9zz11OBMYMg8uwHzuqcOJwP4Bv3ht5p46nAjcH1YSHExeWtbhRIA79/ycmr20rMNaQDL3fHlnu9v/WAs0OffUYSXQ9NxTh9W1SrfP7ygu5p466OKB1n6Wbgbv1yq+2XkB4xrYP6hm//jWBFqk1Unro9uswqgGghB4/mZ1/5+lwPtz4Pcv2/Q2I36ENiUPAPcGsuHOBrHA0ZB38h4/4c9HNogFuCcvwD/kbBALdPv82K38BSSFuZVFfDMVxP6Qri5HLMC9CjT9w0KKWCC/3nxQlXPg7alpSjKMRokPF6tvFoq0St7le+86rKbR5VXKYVgV7M20EmiSPQJKbfhPfTmvHqk2UZqQt5uCFWPVITwjoGw7EylEKDsK5yrJqVAKMQhXbSfFgQglCJ8VIU5yKv4CwLOm95Jyje8AAAAASUVORK5CYII="
+  },
+  {
+    "id": "protonmail",
+    "name": "Proton",
+    "icon": "protonmail.svg",
+    "aliases": [
+      "protonmail",
+      "proton mail",
+      "proton vpn"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "Mailbox password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#6D4AFF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Proton</title><path d=\"M2.474 17.75V24h4.401v-5.979c0-.582.232-1.14.645-1.551a2.204 2.204 0 0 1 1.556-.643h4.513a7.955 7.955 0 0 0 5.612-2.318 7.907 7.907 0 0 0 2.325-5.595 7.91 7.91 0 0 0-2.325-5.596A7.958 7.958 0 0 0 13.587 0H2.474v7.812h4.401V4.129h6.416c.995 0 1.951.394 2.656 1.097.704.7 1.1 1.653 1.101 2.646a3.742 3.742 0 0 1-1.101 2.648 3.766 3.766 0 0 1-2.656 1.097H8.627a6.158 6.158 0 0 0-4.352 1.795 6.133 6.133 0 0 0-1.801 4.338Z\"/></svg>",
+    "color": "#6d4aff",
+    "icon_data": ""
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "icon": "adobe.svg",
+    "aliases": [
+      "creative cloud",
+      "photoshop",
+      "acrobat"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAb1BMVEX////qEADpAADqEQX74uH/+vnvZWL96+r2p6P+9PP//Pz3sa3609H+9/b85eP83Nr0kIv4w8DwambsNCzsKB32oJvtRD76zsz4uLXygHvsLyfxd3Pzi4f0mJTvXlnuWFLxcmztTUfuVUvuQDfrHBMzaFLeAAAECElEQVR4nO1aa1PqMBA1C7S20iJQQRABxf//Gy3qdUjbc/Jo4sydyX4VsyfbfZzd7N1dkiRJkiRJkiTJ/yfFFMvsLwAcBMv9H+jP96KQyPoPANxj/S2CZXwAawrgJbr+Z6ZfqWYeWX/5wgHIa2QA84bqbyUygEdugNYED3EBmO6v5BhVP43Bb5nEjMTyZAYghzIegOWHUX8rdTT95c5sgKiRmNvcX8k+GoCDjQEiRmJJ6qAG4ByJFjzY6W8jMU5BqFa2AGQXBcDcUv0VQRQAZ1sDtACeIuiv7PUrOVXhAbw6AFDqObj+4s0FgLwEj8Sly/1bBHlg/VXm9AXCR2Ltpr8tCIHd0KoOagjCNkmFkYv2AGRFSAAWVKyHIGRByCEVW2MAq4AAtki/3L9D20jAbwAN0NRLDOAxmP4cGmB3l8MMKW/BTIDboSWrERKqINQboEM27V8XMEIlC1QQYEf+TcCJG06D6K9wHfyqOMQNz0EAzLELfjVhFZ6Z7IPURMhF/7WhOE0GKQhT5GRy/Cl4C2gCOQUwwRM8/Zd5Yr4u29H6cxSDN9wbZuo2GY0GAH38diI3QQACUDNsgJtyCz+TksNI/Quof3WT6Uk23IwcV0AqpkUYmR6OLAgwwjqkE5N22YwqCDDHdIfCOBvKYoT+6gIBdOoMccMx1AzHYNah/WR81IyoiUcIoDsGIgO0Eb36Fo0F5a2XX5YwGcnGOxlBtjWQXirCS3yHtzWucgN3Im648QQAp2JyGvh1Qd6yPCMRG2DQpqQo+xUEHIPvg14FqZuSi5cJYH4HLU8Bg9ZveItfhyYgsxBuePEoCDgGh1zwKjl+TfCIxFnj5oJXIW6YOQPAMYh7TshefB40YUdOUntBsqHrMwpM7bImIYUH+rJ2Kwi4uNF+r4b8wZWa1Zhl0laDcMOLEwAcg3xFgbihW5OEY9DQbpJv4DK8xTF4MfArvF4gDpE4gxnFeI0pMYE9NZvDnGr+kPhtURrrR2V4SOvKs75o/8vc0DYSS3iE2q+ynhz1c0mLYrtawF6HhraXdIpMtlw+7GoimYoBUJp7k0UnS2r27Ka+FxpkdNrY9Oozw6LO0MHaAVv8uGE1Natd1feCkxRlm10zdwN0e3XihhaROLNaE+kcq89hKgbVmIw8Xod6NJHEsbEgEHLPAJy1i+FUbn5G2Xqov56rzStwMVPGXTPHF9pfAHp8MTfkkQhfh0wAOmme/PJE3dC4LIdkr3NlsvBDCwKeTJukwzam5Jc7YgLDviYDoD8VV2zhBHcIfjH4g0D/BqSikUgkbMYMQO+9CsIN8a6Z9abSkEz0s4g7w3FFrsYA6JREEtCyAtsVTzIZIR26U2bwtFi7ZkmSJEmSJEmSJH7yCa5SNBGPoR+UAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "atlassian",
+    "name": "Atlassian",
+    "icon": "atlassian.svg",
+    "aliases": [
+      "jira",
+      "confluence",
+      "trello",
+      "bitbucket"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0052CC\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Atlassian</title><path d=\"M7.12 11.084a.683.683 0 00-1.16.126L.075 22.974a.703.703 0 00.63 1.018h8.19a.678.678 0 00.63-.39c1.767-3.65.696-9.203-2.406-12.52zM11.434.386a15.515 15.515 0 00-.906 15.317l3.95 7.9a.703.703 0 00.628.388h8.19a.703.703 0 00.63-1.017L12.63.38a.664.664 0 00-1.196.006z\"/></svg>",
+    "color": "#0052cc",
+    "icon_data": ""
+  },
+  {
+    "id": "notion",
+    "name": "Notion",
+    "icon": "notion.svg",
+    "aliases": [
+      "notes",
+      "docs"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Notion</title><path d=\"M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "icon": "figma.svg",
+    "aliases": [
+      "design"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#F24E1E\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Figma</title><path d=\"M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z\"/></svg>",
+    "color": "#f24e1e",
+    "icon_data": ""
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "icon": "stripe.svg",
+    "aliases": [
+      "payments",
+      "dashboard"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#635BFF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Stripe</title><path d=\"M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z\"/></svg>",
+    "color": "#635bff",
+    "icon_data": ""
+  },
+  {
+    "id": "shopify",
+    "name": "Shopify",
+    "icon": "shopify.svg",
+    "aliases": [
+      "store",
+      "ecommerce"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Website",
+        "type": "url",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#7AB55C\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Shopify</title><path d=\"M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z\"/></svg>",
+    "color": "#7ab55c",
+    "icon_data": ""
+  },
+  {
+    "id": "wordpress",
+    "name": "WordPress",
+    "icon": "wordpress.svg",
+    "aliases": [
+      "wp",
+      "blog",
+      "automattic"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Website",
+        "type": "url",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#21759B\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>WordPress</title><path d=\"M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0\"/></svg>",
+    "color": "#21759b",
+    "icon_data": ""
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "icon": "cloudflare.svg",
+    "aliases": [
+      "cf",
+      "dns",
+      "cdn"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#F38020\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Cloudflare</title><path d=\"M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727\"/></svg>",
+    "color": "#f38020",
+    "icon_data": ""
+  },
+  {
+    "id": "aws",
+    "name": "Amazon Web Services",
+    "icon": "aws.svg",
+    "aliases": [
+      "aws",
+      "amazon web services",
+      "iam"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Account ID",
+        "type": "text",
+        "secret": false
+      },
+      {
+        "label": "Username",
+        "type": "username",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,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"
+  },
+  {
+    "id": "digitalocean",
+    "name": "DigitalOcean",
+    "icon": "digitalocean.svg",
+    "aliases": [
+      "do",
+      "droplet",
+      "cloud"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0080FF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>DigitalOcean</title><path d=\"M12.04 0C5.408-.02.005 5.37.005 11.992h4.638c0-4.923 4.882-8.731 10.064-6.855a6.95 6.95 0 014.147 4.148c1.889 5.177-1.924 10.055-6.84 10.064v-4.61H7.391v4.623h4.61V24c7.86 0 13.967-7.588 11.397-15.83-1.115-3.59-3.985-6.446-7.575-7.575A12.8 12.8 0 0012.039 0zM7.39 19.362H3.828v3.564H7.39zm-3.563 0v-2.978H.85v2.978z\"/></svg>",
+    "color": "#0080ff",
+    "icon_data": ""
+  },
+  {
+    "id": "heroku",
+    "name": "Heroku",
+    "icon": "heroku.svg",
+    "aliases": [
+      "dyno",
+      "salesforce"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/jpeg;base64,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"
+  },
+  {
+    "id": "tumblr",
+    "name": "Tumblr",
+    "icon": "tumblr.svg",
+    "aliases": [
+      "blog"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#36465D\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Tumblr</title><path d=\"M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z\"/></svg>",
+    "color": "#36465d",
+    "icon_data": ""
+  },
+  {
+    "id": "vimeo",
+    "name": "Vimeo",
+    "icon": "vimeo.svg",
+    "aliases": [
+      "video"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#1AB7EA\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Vimeo</title><path d=\"M23.9765 6.4168c-.105 2.338-1.739 5.5429-4.894 9.6088-3.2679 4.247-6.0258 6.3699-8.2898 6.3699-1.409 0-2.578-1.294-3.553-3.881l-1.9179-7.1138c-.719-2.584-1.488-3.878-2.312-3.878-.179 0-.806.378-1.8809 1.132l-1.129-1.457a315.06 315.06 0 003.501-3.1279c1.579-1.368 2.765-2.085 3.5539-2.159 1.867-.18 3.016 1.1 3.447 3.838.465 2.953.789 4.789.971 5.5069.5389 2.45 1.1309 3.674 1.7759 3.674.502 0 1.256-.796 2.265-2.385 1.004-1.589 1.54-2.797 1.612-3.628.144-1.371-.395-2.061-1.614-2.061-.574 0-1.167.121-1.777.391 1.186-3.8679 3.434-5.7568 6.7619-5.6368 2.4729.06 3.6279 1.664 3.4929 4.7969z\"/></svg>",
+    "color": "#1ab7ea",
+    "icon_data": ""
+  },
+  {
+    "id": "soundcloud",
+    "name": "SoundCloud",
+    "icon": "soundcloud.svg",
+    "aliases": [
+      "sc",
+      "music",
+      "audio"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FF5500\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>SoundCloud</title><path d=\"M23.999 14.165c-.052 1.796-1.612 3.169-3.4 3.169h-8.18a.68.68 0 0 1-.675-.683V7.862a.747.747 0 0 1 .452-.724s.75-.513 2.333-.513a5.364 5.364 0 0 1 2.763.755 5.433 5.433 0 0 1 2.57 3.54c.282-.08.574-.121.868-.12.884 0 1.73.358 2.347.992s.948 1.49.922 2.373ZM10.721 8.421c.247 2.98.427 5.697 0 8.672a.264.264 0 0 1-.53 0c-.395-2.946-.22-5.718 0-8.672a.264.264 0 0 1 .53 0ZM9.072 9.448c.285 2.659.37 4.986-.006 7.655a.277.277 0 0 1-.55 0c-.331-2.63-.256-5.02 0-7.655a.277.277 0 0 1 .556 0Zm-1.663-.257c.27 2.726.39 5.171 0 7.904a.266.266 0 0 1-.532 0c-.38-2.69-.257-5.21 0-7.904a.266.266 0 0 1 .532 0Zm-1.647.77a26.108 26.108 0 0 1-.008 7.147.272.272 0 0 1-.542 0 27.955 27.955 0 0 1 0-7.147.275.275 0 0 1 .55 0Zm-1.67 1.769c.421 1.865.228 3.5-.029 5.388a.257.257 0 0 1-.514 0c-.21-1.858-.398-3.549 0-5.389a.272.272 0 0 1 .543 0Zm-1.655-.273c.388 1.897.26 3.508-.01 5.412-.026.28-.514.283-.54 0-.244-1.878-.347-3.54-.01-5.412a.283.283 0 0 1 .56 0Zm-1.668.911c.4 1.268.257 2.292-.026 3.572a.257.257 0 0 1-.514 0c-.241-1.262-.354-2.312-.023-3.572a.283.283 0 0 1 .563 0Z\"/></svg>",
+    "color": "#ff5500",
+    "icon_data": ""
+  },
+  {
+    "id": "airbnb",
+    "name": "Airbnb",
+    "icon": "airbnb.svg",
+    "aliases": [
+      "abnb",
+      "travel",
+      "stay"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#FF5A5F\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Airbnb</title><path d=\"M12.001 18.275c-1.353-1.697-2.148-3.184-2.413-4.457-.263-1.027-.16-1.848.291-2.465.477-.71 1.188-1.056 2.121-1.056s1.643.345 2.12 1.063c.446.61.558 1.432.286 2.465-.291 1.298-1.085 2.785-2.412 4.458zm9.601 1.14c-.185 1.246-1.034 2.28-2.2 2.783-2.253.98-4.483-.583-6.392-2.704 3.157-3.951 3.74-7.028 2.385-9.018-.795-1.14-1.933-1.695-3.394-1.695-2.944 0-4.563 2.49-3.927 5.382.37 1.565 1.352 3.343 2.917 5.332-.98 1.085-1.91 1.856-2.732 2.333-.636.344-1.245.558-1.828.609-2.679.399-4.778-2.2-3.825-4.88.132-.345.395-.98.845-1.961l.025-.053c1.464-3.178 3.242-6.79 5.285-10.795l.053-.132.58-1.116c.45-.822.635-1.19 1.351-1.643.346-.21.77-.315 1.246-.315.954 0 1.698.558 2.016 1.007.158.239.345.557.582.953l.558 1.089.08.159c2.041 4.004 3.821 7.608 5.279 10.794l.026.025.533 1.22.318.764c.243.613.294 1.222.213 1.858zm1.22-2.39c-.186-.583-.505-1.271-.9-2.094v-.03c-1.889-4.006-3.642-7.608-5.307-10.844l-.111-.163C15.317 1.461 14.468 0 12.001 0c-2.44 0-3.476 1.695-4.535 3.898l-.081.16c-1.669 3.236-3.421 6.843-5.303 10.847v.053l-.559 1.22c-.21.504-.317.768-.345.847C-.172 20.74 2.611 24 5.98 24c.027 0 .132 0 .265-.027h.372c1.75-.213 3.554-1.325 5.384-3.317 1.829 1.989 3.635 3.104 5.382 3.317h.372c.133.027.239.027.265.027 3.37.003 6.152-3.261 4.802-6.975z\"/></svg>",
+    "color": "#ff5a5f",
+    "icon_data": ""
+  },
+  {
+    "id": "uber",
+    "name": "Uber",
+    "icon": "uber.svg",
+    "aliases": [
+      "ride",
+      "eats"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#000000\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Uber</title><path d=\"M0 7.97v4.958c0 1.867 1.302 3.101 3 3.101.826 0 1.562-.316 2.094-.87v.736H6.27V7.97H5.082v4.888c0 1.257-.85 2.106-1.947 2.106-1.11 0-1.946-.827-1.946-2.106V7.971H0zm7.44 0v7.925h1.13v-.725c.521.532 1.257.86 2.06.86a3.006 3.006 0 0 0 3.034-3.01 3.01 3.01 0 0 0-3.033-3.024 2.86 2.86 0 0 0-2.049.861V7.971H7.439zm9.869 2.038c-1.687 0-2.965 1.37-2.965 3 0 1.72 1.334 3.01 3.066 3.01 1.053 0 1.913-.463 2.49-1.233l-.826-.611c-.43.577-.996.847-1.664.847-.973 0-1.753-.7-1.912-1.64h4.697v-.373c0-1.72-1.222-3-2.886-3zm6.295.068c-.634 0-1.098.294-1.381.758v-.713h-1.131v5.774h1.142V12.61c0-.894.544-1.47 1.291-1.47H24v-1.065h-.396zm-6.319.928c.85 0 1.564.588 1.756 1.47H15.52c.203-.882.916-1.47 1.765-1.47zm-6.732.012c1.086 0 1.98.883 1.98 2.004a1.993 1.993 0 0 1-1.98 2.001A1.989 1.989 0 0 1 8.56 13.02a1.99 1.99 0 0 1 1.992-2.004z\"/></svg>",
+    "color": "#000000",
+    "icon_data": ""
+  },
+  {
+    "id": "booking",
+    "name": "Booking.com",
+    "icon": "booking.svg",
+    "aliases": [
+      "booking",
+      "travel",
+      "hotel"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#003A9A\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Booking.com</title><path d=\"M24 0H0v24h24ZM8.575 6.563h2.658c2.108 0 3.473 1.15 3.473 2.898 0 1.15-.575 1.82-.91 2.108l-.287.263.335.192c.815.479 1.318 1.389 1.318 2.395 0 1.988-1.51 3.257-3.857 3.257H7.449V7.713c0-.623.503-1.126 1.126-1.15zm1.7 1.868c-.479.024-.694.264-.694.79v1.893h1.676c.958 0 1.294-.743 1.294-1.365 0-.815-.503-1.318-1.318-1.318zm-.096 4.36c-.407.071-.598.31-.598.79v2.251h1.868c.934 0 1.509-.55 1.509-1.533 0-.934-.599-1.509-1.51-1.509zm7.737 2.394c.743 0 1.341.599 1.341 1.342a1.34 1.34 0 0 1-1.341 1.341 1.355 1.355 0 0 1-1.341-1.341c0-.743.598-1.342 1.34-1.342z\"/></svg>",
+    "color": "#003a9a",
+    "icon_data": ""
+  },
+  {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "icon": "coinbase.svg",
+    "aliases": [
+      "crypto",
+      "exchange",
+      "btc"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#0052FF\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Coinbase</title><path d=\"M4.844 11.053c-.872 0-1.553.662-1.553 1.548s.664 1.542 1.553 1.542c.889 0 1.564-.667 1.564-1.547 0-.875-.664-1.543-1.564-1.543zm.006 2.452c-.497 0-.86-.386-.86-.904 0-.523.357-.909.854-.909.502 0 .866.392.866.91 0 .517-.364.903-.86.903zm1.749-1.778h.433v2.36h.693V11.11H6.599zm-5.052-.035c.364 0 .653.224.762.558h.734c-.133-.713-.722-1.197-1.49-1.197-.872 0-1.553.662-1.553 1.548 0 .887.664 1.543 1.553 1.543.75 0 1.351-.484 1.484-1.203h-.728a.78.78 0 01-.756.564c-.502 0-.855-.386-.855-.904 0-.523.347-.909.85-.909zm18.215.622l-.508-.075c-.242-.035-.415-.115-.415-.305 0-.207.225-.31.53-.31.336 0 .55.143.595.379h.67c-.075-.599-.537-.95-1.247-.95-.733 0-1.218.375-1.218.904 0 .506.317.8.958.892l.508.075c.249.034.387.132.387.316 0 .236-.242.334-.577.334-.41 0-.641-.167-.676-.42h-.681c.064.581.52.99 1.35.99.757 0 1.26-.346 1.26-.938 0-.53-.364-.806-.936-.892zM7.378 9.885a.429.429 0 00-.444.437c0 .254.19.438.444.438a.429.429 0 00.445-.438.429.429 0 00-.445-.437zm10.167 2.245c0-.645-.392-1.076-1.224-1.076-.785 0-1.224.397-1.31 1.007h.687c.035-.236.22-.432.612-.432.352 0 .525.155.525.345 0 .248-.317.311-.71.351-.531.058-1.19.242-1.19.933 0 .535.4.88 1.034.88.497 0 .809-.207.965-.535.023.293.242.483.548.483h.404v-.616h-.34v-1.34zm-.68.748c0 .397-.347.69-.769.69-.26 0-.48-.11-.48-.34 0-.293.353-.373.676-.408.312-.028.485-.097.572-.23zm-3.679-1.825c-.386 0-.71.162-.94.432V9.856h-.693v4.23h.68v-.391c.232.282.56.449.953.449.832 0 1.461-.656 1.461-1.543 0-.886-.64-1.548-1.46-1.548zm-.103 2.452c-.497 0-.86-.386-.86-.904 0-.517.369-.909.865-.909.503 0 .855.386.855.91 0 .517-.364.903-.86.903zm-3.187-2.452c-.45 0-.745.184-.919.443v-.385H8.29v2.975h.693v-1.617c0-.455.289-.777.716-.777.398 0 .647.282.647.69v1.704h.692v-1.755c0-.748-.386-1.278-1.142-1.278zM24 12.503c0-.851-.624-1.45-1.46-1.45-.89 0-1.542.668-1.542 1.548 0 .927.698 1.543 1.553 1.543.722 0 1.287-.426 1.432-1.03h-.722c-.104.264-.358.414-.699.414-.445 0-.78-.276-.854-.76H24v-.264zm-2.252-.23c.11-.414.422-.615.78-.615.392 0 .693.224.762.615Z\"/></svg>",
+    "color": "#0052ff",
+    "icon_data": ""
+  },
+  {
+    "id": "binance",
+    "name": "Binance",
+    "icon": "binance.svg",
+    "aliases": [
+      "crypto",
+      "exchange",
+      "bnb"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#F0B90B\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Binance</title><path d=\"M16.624 13.9202l2.7175 2.7154-7.353 7.353-7.353-7.352 2.7175-2.7164 4.6355 4.6595 4.6356-4.6595zm4.6366-4.6366L24 12l-2.7154 2.7164L18.5682 12l2.6924-2.7164zm-9.272.001l2.7163 2.6914-2.7164 2.7174v-.001L9.2721 12l2.7164-2.7154zm-9.2722-.001L5.4088 12l-2.6914 2.6924L0 12l2.7164-2.7164zM11.9885.0115l7.353 7.329-2.7174 2.7154-4.6356-4.6356-4.6355 4.6595-2.7174-2.7154 7.353-7.353z\"/></svg>",
+    "color": "#f0b90b",
+    "icon_data": ""
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken",
+    "icon": "kraken.svg",
+    "aliases": [
+      "crypto",
+      "exchange"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAKlBMVEVHcExzMvhyM/dzMvhzM/hxMvX///9wMPVuKvXWxf2vjvqLWPfx6v7ErPtGvTW9AAAABXRSTlMA1TOdbHUnzfcAAAN1SURBVHic7ZvreoMgDIZbxXK+/9sdeAJsBgGs6Z6Z/arPJC9fggKSxwOyYWDj+JxOs+c4smEAXUHGZt/8PP8bBcMwDGf2/J2hhDCMn/O+WB6BfbD3mz3Z792/wP2M8IsIV3R/JQBFYFe59wYQfDz7UhtJ+++NEfs/EFyV/7ElY4HAvyMgDYAzzigD4G0PwsUjMNg6Fgcq/9M00AqwSkCVAd7mLKAZAqsx2gjMMaCMwBwDwjHgbaBNAZ8EpCnwBQBPmhdhDEDrf5pugD8NwHcjAOBCOLfam/vlfrRCtAA452LSykpnxv1JaZVuhagH4LNzY16xGbNA1CPUAjj3zvsLMmNsA0IdgHcvYfcLg9S8EqFSAZXxvpjUdbtLFQBc6FzvdxWsrhGhRoFy91cRVIUIaADXfZz7WQQ8ARagxr8zO4lzAYRGyr+HQSMJcADV/vEEKIAG/2gCDECTf0eAykQEAJ+q8i8YajRiFLBt/l9GnQIgsM8fgACRBkWAxgRYDJEGJQDeHIBZgnIQigr0CODHYomgAMBF4wjYTJWyoAAgdJ//lyllQR6gLwMWCfoA+jLAW2kg5AGE6vVffBYUcqAzBb3ZDgW6HkKbFWKQB+iPgLN8DPIA3WPAW/5RkANofg+nZtsBzkiBUhJkQ3AAgHAMeDH91QyQ5KDx8xuVxsSvRqfjfF36a/H6Nf8kyIbAxs261T9PVweOSfjtkSRVrb8mklVUK0DS8rreS54MatmRSHJ1nQvzWL3sMMjmQGg4JFKAMtu7HnIWk7YCxD3bh1LkzGxbMvE7e5M7vvkMBRQAIEO776qAN1cCgJ2AADgA8L8UgABuBW4FbgVuBW4FvkqB7LT4mxWIp2ShDQ0B7LOffQYM31wHEO2PxRNb895uWEEFqPjm1ml5kDHaft9jEG//bBPAABpNoNuXZtsefbL977Q1R/98nYWbaG+UQzfXAkz+G5W0Ovkg6Fq2Uqrkg4CYrx2+1aw3F77fFHfJfEuHJjhwTYj1n1P+93+sBPDugBaw1+CLlQAfthvgBrgBbgD6o1zj6cUsVTZSn6Yb6Q80kh/pJD/USn6sl/5gM/nRbvLD7fTH+8kLHOhLPKgGQlRpRF3mQ1/oRF7qRV/sdjnBW7kffcEjfcknfdHrRSJkyn4f9IXPD/LS7xmBfYYBWfy+MFxX/v8DWvBGylgvdgsAAAAASUVORK5CYII="
+  },
+  {
+    "id": "ebay-classifieds",
+    "name": "Etsy",
+    "icon": "ebay-classifieds.svg",
+    "aliases": [
+      "etsy",
+      "handmade",
+      "shop"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#F16521\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Etsy</title><path d=\"M8.559 2.445c0-.325.033-.52.59-.52h7.465c1.3 0 2.02 1.11 2.54 3.193l.42 1.666h1.27c.23-4.728.43-6.784.43-6.784s-3.196.36-5.09.36H6.635L1.521.196v1.37l1.725.326c1.21.24 1.5.496 1.6 1.606 0 0 .11 3.27.11 8.64 0 5.385-.09 8.61-.09 8.61 0 .973-.39 1.333-1.59 1.573l-1.722.33V24l5.13-.165h8.55c1.935 0 6.39.165 6.39.165.105-1.17.75-6.48.855-7.064h-1.2l-1.284 2.91c-1.005 2.28-2.476 2.445-4.11 2.445h-4.906c-1.63 0-2.415-.64-2.415-2.05V12.8s3.62 0 4.79.096c.912.064 1.463.325 1.76 1.598l.39 1.695h1.41l-.09-4.278.192-4.305h-1.391l-.45 1.89c-.283 1.244-.48 1.47-1.754 1.6-1.666.17-4.815.14-4.815.14V2.45h-.05z\"/></svg>",
+    "color": "#f16521",
+    "icon_data": ""
+  },
+  {
+    "id": "yandex",
+    "name": "Yandex",
+    "icon": "yandex.svg",
+    "aliases": [
+      "yandex mail",
+      "ru"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      },
+      {
+        "label": "2FA secret",
+        "type": "totp_secret",
+        "secret": true
+      },
+      {
+        "label": "Recovery codes",
+        "type": "recovery_code",
+        "secret": true
+      }
+    ],
+    "svg": "",
+    "color": "",
+    "icon_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAZlBMVEX4YEr////4XEX4Xkf4VTz6koT9z8r4Uzn94d74UTb+8fD8tq34WkP+6eb4WD///Pz6jX76g3L6h3f5cmD92tb91dD7raL8vLX7mIv5fm3/9vX4aFP5a1j5dmT6nI/6oJP8xLz6pZqGQKERAAAC+klEQVR4nO2ZYZeyIBCFEcxcJTUrK02r//8n13arwyVDW0Hf8555Phbp5TIzDMQYQRAEQRAEQRAE0YPgKh//Qox9P88XCtmp/4EV/GI9SLOBpPBUin7FWan+YJ+MFCA2kfq81abXglgdH9Wj14DtwYJG9gg+rcCA0a/XLd1+mYcnZ3V0uhgbAjfQgrXZgmWqDg6q8SvAZAZRsDXOSWbq2LIZG4I/iABcPZgsSLYgdkDWDiBpIAoCgwCZqSuQxj0ROxgI7JWhtvCdOjKyY0A7rwOE4f6tAH4EqYWVCLixRAvydwo4JoyNFPhFsyB+9/5jCMGytPV+JqpB9VhcoQgcbRShB1DgvUPno8UJQjCw+HrG12BB2JlefAEqG5sG6BYsuhRwLEL9++YnyBwSIex4OK8hAgq7BjAG9bjLguUFAnV0K6Sh1+OXGiNqGHCxbQBjkOPRywR97IRyW9vAE9xnvECLAlFBkAQ9fctf8NGCDKcoC9Bn3LP/iMQ0x3osNpCDobVtSH0HgygLazUK5AG+zBwY0CY6HhHOqoAKcjCyWoOeiBp3ZWW35bnbIvRQoFmgLLR2GnEkgK/RgqcAcYK96l2/YAFYae9ZjJIrGJA5MuAW6zDTnX//nGOZtteKvYBdb3nPNpmDAS6K0AOZw1x390+hRm4dGtDWYyh4v/UYi1BqrxnvQqvH+5/JQquwcmpAG/DYHLadr5acV6cG6BnnFYJxbBcdG9Du+7grb+RxW0ZPyovf/4yRCtCCcyL8LwXHC8Be6nFo7/w1GKzH9pu/Prh2ZeN80V+QYIH5ysYJ2kHRfGvlBB8vYtw0gCbwLs7GbejHCgbfWrkSYDoiTAMeQ+xeBQyBN2BB95WNUwE13odNn4nalY2Yfg3wymb6asgSuBQNpt8Q8Fq4nF4A/jOQWvhv6lN8tRdO3Z3GhgnwrtNHIQqI3feCZgEzpME/JmA3t4AZunMSQAJIAAkgASRgfgG7mQXIJlaYoSdkTKjM8H6CIAiCIAiC+F/4Buz6IXO11xJpAAAAAElFTkSuQmCC"
+  },
+  {
+    "id": "wechat",
+    "name": "WeChat",
+    "icon": "wechat.svg",
+    "aliases": [
+      "weixin",
+      "tencent",
+      "messenger"
+    ],
+    "recommended_fields": [
+      {
+        "label": "Phone",
+        "type": "phone",
+        "secret": false
+      },
+      {
+        "label": "Password",
+        "type": "password",
+        "secret": true
+      }
+    ],
+    "svg": "<svg fill=\"#07C160\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>WeChat</title><path d=\"M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z\"/></svg>",
+    "color": "#07c160",
+    "icon_data": ""
+  }
+]
