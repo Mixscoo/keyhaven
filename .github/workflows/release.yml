@@ -53,7 +53,12 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
 
       - name: Install frontend dependencies
-        run: npm ci
+        # Use `npm install` (not `npm ci`): the lockfile can legitimately omit
+        # some platform-specific optional deps (e.g. rolldown/@emnapi wasm
+        # fallbacks), which makes `npm ci`'s strict sync check fail on the
+        # runners. `npm install` reconciles per-platform and is what the
+        # official tauri-action examples use.
+        run: npm install
 
       - name: Build and publish release
         uses: tauri-apps/tauri-action@v0
