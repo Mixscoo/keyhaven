@@ -1,6 +1,6 @@
 {
   "identifier": "default",
-  "description": "Keyhaven capability set. Deliberately grants NO networking permissions (no http plugin is registered). Filesystem access is dialog-scoped: paths come from the native open/save dialog, and only file read/write/exists/rename are permitted. Clipboard is limited to text read/write/clear for the copy-with-auto-clear feature.",
+  "description": "Keyhaven capability set. Grants no general networking to the webview (no http plugin); the only outbound traffic is the updater plugin checking GitHub Releases for new versions and downloading a signed update. Filesystem access is dialog-scoped: paths come from the native open/save dialog, and only file read/write/exists/rename are permitted. Clipboard is limited to text read/write/clear for the copy-with-auto-clear feature. Process restart is permitted so the app can relaunch after applying an update.",
   "windows": ["main"],
   "permissions": [
     "core:default",
@@ -17,6 +17,8 @@
     "fs:allow-rename",
     "clipboard-manager:allow-read-text",
     "clipboard-manager:allow-write-text",
-    "clipboard-manager:allow-clear"
+    "clipboard-manager:allow-clear",
+    "updater:default",
+    "process:allow-restart"
   ]
 }

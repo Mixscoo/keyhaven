@@ -10,6 +10,7 @@
   import { session, initSession, listenForLock } from "./lib/stores/session";
   import { route } from "./lib/stores/navigation";
   import { toast } from "./lib/stores/toast";
+  import { checkForUpdates } from "./lib/updater";
   import Setup from "./views/Setup.svelte";
   import Unlock from "./views/Unlock.svelte";
   import Vault from "./views/Vault.svelte";
@@ -39,6 +40,10 @@
       } catch {
         toast.push("warning", "Auto-lock notifications are unavailable.");
       }
+
+      // Best-effort: check for a newer signed release and update in the
+      // background. No-op when offline, up to date, or running in dev.
+      void checkForUpdates();
     })();
 
     return () => unlisten?.();

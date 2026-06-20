@@ -21,3 +21,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Tauri updater signing key — NEVER commit. Back this up somewhere safe;
+# losing it means you can't ship updates existing installs will accept.
+keyhaven-updater.key
+keyhaven-updater.key.pub

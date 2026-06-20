@@ -44,6 +44,8 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_clipboard_manager::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
+        .plugin(tauri_plugin_process::init())
         .manage(session)
         .setup(|app| {
             // --- Backend-authoritative auto-lock timer (task 4.2, Req 4.1/4.2) ---
