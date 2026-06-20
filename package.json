@@ -1,6 +1,6 @@
 {
   "name": "keyhaven",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Keyhaven - offline-first, cross-platform encrypted password manager",
   "type": "module",
   "private": true,
