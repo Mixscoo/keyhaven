@@ -1,6 +1,6 @@
 {
   "productName": "Keyhaven",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "identifier": "com.keyhaven.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",

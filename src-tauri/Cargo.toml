@@ -1,6 +1,6 @@
 [package]
 name = "keyhaven"
-version = "0.3.0"
+version = "1.0.0"
 description = "Keyhaven - offline-first, cross-platform encrypted password manager"
 authors = ["Keyhaven"]
 edition = "2021"
