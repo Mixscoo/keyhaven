@@ -59,6 +59,12 @@
   // the form has unsaved changes (dirty). Set when a service is chosen (create)
   // or an entry loads (edit), and refreshed after a successful save.
   let baseline = $state<string>("");
+  // View vs edit. Existing entries open read-only (View) so a click can't
+  // accidentally change anything; the user presses Edit to make changes.
+  // Creating a new entry is always in edit mode.
+  let editing = $state(false);
+  // The entry as loaded, so "Cancel" can restore it after discarded edits.
+  let loadedEntry = $state<Entry | null>(null);
 
   /** Generate a stable temp id for a freshly added/prefilled field row. */
   function tempId(): string {
@@ -91,6 +97,8 @@
     fields = fieldsFromRecommended(selection.recommendedFields);
     // The freshly prefilled (empty) form is the clean baseline for dirty checks.
     baseline = snapshotOf(title, fields);
+    // Creating a new entry is an editing flow.
+    editing = true;
   }
 
   /** Populate the working state from an existing entry (edit mode). */
@@ -285,18 +293,39 @@
   }
 
   // ---- Leave guard (Back with unsaved changes) -----------------------------
+  /** Enter edit mode on an existing entry (from the View screen). */
+  function enterEdit(): void {
+    pingActivity();
+    editing = true;
+  }
+
+  /** Leave edit mode and restore the entry to its last-saved state (Cancel). */
+  function enterView(): void {
+    if (loadedEntry) loadFromEntry(loadedEntry);
+    editing = false;
+  }
+
   /** Back action: confirm before leaving if there are unsaved changes. */
   function requestBack(): void {
-    if (dirty) {
+    if (editing && dirty) {
       confirmBack = true;
-    } else {
-      openList();
+      return;
     }
+    // Editing an existing entry with no changes → return to its View screen.
+    if (editing && isEdit) {
+      enterView();
+      return;
+    }
+    openList();
   }
 
   function confirmBackDiscard(): void {
     confirmBack = false;
-    openList();
+    if (isEdit) {
+      enterView();
+    } else {
+      openList();
+    }
   }
 
   function cancelBack(): void {
@@ -327,7 +356,10 @@
     loading = true;
     api
       .getEntry(id)
-      .then((entry) => loadFromEntry(entry))
+      .then((entry) => {
+        loadedEntry = entry;
+        loadFromEntry(entry);
+      })
       .catch(() => {
         toast.push("danger", "Could not load this entry.");
         openList();
@@ -356,7 +388,7 @@
 <section class="editor">
   <header class="topbar">
     <button class="btn ghost" type="button" onclick={requestBack}>‹ Back</button>
-    <h1>{isEdit ? "Edit entry" : "New entry"}</h1>
+    <h1>{isEdit ? (editing ? "Edit entry" : "Entry") : "New entry"}</h1>
   </header>
 
   {#if loading}
@@ -389,18 +421,20 @@
       </div>
 
       <!-- Optional entry title (Req 5.4 association uses service; title is a
-           human label the user can set). -->
-      <div class="title-field">
-        <label for="entry-title">Title (optional)</label>
-        <input
-          id="entry-title"
-          type="text"
-          placeholder={serviceName}
-          autocomplete="off"
-          bind:value={title}
-          oninput={pingActivity}
-        />
-      </div>
+           human label the user can set). Editable only in edit mode. -->
+      {#if editing}
+        <div class="title-field">
+          <label for="entry-title">Title (optional)</label>
+          <input
+            id="entry-title"
+            type="text"
+            placeholder={serviceName}
+            autocomplete="off"
+            bind:value={title}
+            oninput={pingActivity}
+          />
+        </div>
+      {/if}
 
       <!-- Interactive field editing: add/remove/relabel, mask/reveal, copy,
            inline generator (Req 5.3, 7.2–7.5, 8.2, 8.3, 10.1). -->
@@ -416,6 +450,7 @@
                 entryId={isEdit ? entryId : undefined}
                 genDefaults={$settings.password_gen_defaults}
                 error={fieldErrors[index]}
+                readonly={!editing}
                 onChange={(patch) => updateField(index, patch)}
                 onRemove={() => removeField(index)}
                 onActivity={pingActivity}
@@ -424,23 +459,20 @@
           </div>
         {/if}
 
-        <button class="btn ghost add-field" type="button" onclick={addField}>
-          <span class="plus" aria-hidden="true">+</span>
-          Add field
-        </button>
+        {#if editing}
+          <button class="btn ghost add-field" type="button" onclick={addField}>
+            <span class="plus" aria-hidden="true">+</span>
+            Add field
+          </button>
+        {/if}
       </div>
 
-      <!-- Save / delete actions -->
+      <!-- Actions: View mode (Edit/Delete) vs Edit mode (Save/Cancel/Delete) -->
       <footer class="editor-actions">
-        <button
-          class="btn primary"
-          type="button"
-          onclick={save}
-          disabled={saving || !canSave}
-        >
-          {saving ? "Saving…" : isEdit ? "Save changes" : "Save entry"}
-        </button>
-        {#if isEdit}
+        {#if isEdit && !editing}
+          <button class="btn primary" type="button" onclick={enterEdit}>
+            Edit
+          </button>
           <button
             class="btn danger"
             type="button"
@@ -449,9 +481,36 @@
           >
             Delete
           </button>
-        {/if}
-        {#if blockReason}
-          <p class="block-reason" role="status">{blockReason}</p>
+        {:else}
+          <button
+            class="btn primary"
+            type="button"
+            onclick={save}
+            disabled={saving || !canSave}
+          >
+            {saving ? "Saving…" : isEdit ? "Save changes" : "Save entry"}
+          </button>
+          {#if isEdit}
+            <button
+              class="btn ghost"
+              type="button"
+              onclick={requestBack}
+              disabled={saving}
+            >
+              Cancel
+            </button>
+            <button
+              class="btn danger"
+              type="button"
+              onclick={requestDelete}
+              disabled={deleting}
+            >
+              Delete
+            </button>
+          {/if}
+          {#if blockReason}
+            <p class="block-reason" role="status">{blockReason}</p>
+          {/if}
         {/if}
       </footer>
     </div>

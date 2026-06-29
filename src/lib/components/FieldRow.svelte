@@ -28,6 +28,7 @@
     entryId,
     genDefaults,
     error,
+    readonly = false,
     onChange,
     onRemove,
     onActivity,
@@ -39,6 +40,8 @@
     genDefaults: PasswordGenOptions;
     /** Validation error for this field, or null/undefined when valid. */
     error?: string | null;
+    /** Read-only view: show value with reveal/copy, but no editing controls. */
+    readonly?: boolean;
     /** Report a field edit (partial patch) back to the editor. */
     onChange: (patch: Partial<WorkingField>) => void;
     /** Remove this field row. */
@@ -148,40 +151,44 @@
   }
 </script>
 
-<div class="field-row">
+<div class="field-row" class:readonly>
   <div class="line">
-    <input
-      class="label-input"
-      type="text"
-      placeholder="Label"
-      aria-label="Field label"
-      value={field.label}
-      oninput={onLabelInput}
-    />
-
-    <div class="type-select">
-      <Select
-        value={field.type}
-        options={FIELD_TYPES}
-        onChange={onTypeChange}
-        ariaLabel="Field type"
-        minWidth="140px"
+    {#if readonly}
+      <span class="ro-label">{field.label}</span>
+    {:else}
+      <input
+        class="label-input"
+        type="text"
+        placeholder="Label"
+        aria-label="Field label"
+        value={field.label}
+        oninput={onLabelInput}
       />
-    </div>
 
-    <button
-      class="icon-btn remove"
-      type="button"
-      onclick={onRemove}
-      aria-label="Remove field"
-      title="Remove field"
-    >
-      <!-- close / remove -->
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-        <line x1="5.5" y1="5.5" x2="14.5" y2="14.5" />
-        <line x1="14.5" y1="5.5" x2="5.5" y2="14.5" />
-      </svg>
-    </button>
+      <div class="type-select">
+        <Select
+          value={field.type}
+          options={FIELD_TYPES}
+          onChange={onTypeChange}
+          ariaLabel="Field type"
+          minWidth="140px"
+        />
+      </div>
+
+      <button
+        class="icon-btn remove"
+        type="button"
+        onclick={onRemove}
+        aria-label="Remove field"
+        title="Remove field"
+      >
+        <!-- close / remove -->
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <line x1="5.5" y1="5.5" x2="14.5" y2="14.5" />
+          <line x1="14.5" y1="5.5" x2="5.5" y2="14.5" />
+        </svg>
+      </button>
+    {/if}
   </div>
 
   <div class="line value-line">
@@ -196,6 +203,7 @@
       spellcheck="false"
       value={field.value}
       oninput={onValueInput}
+      readonly={readonly}
     />
 
     {#if field.secret}
@@ -224,7 +232,7 @@
       </button>
     {/if}
 
-    {#if !field.secret || revealed}
+    {#if !field.secret || revealed || readonly}
       <button
         class="icon-btn"
         type="button"
@@ -241,7 +249,7 @@
       </button>
     {/if}
 
-    {#if field.secret}
+    {#if field.secret && !readonly}
       <button
         class="icon-btn"
         type="button"
@@ -258,10 +266,12 @@
     {/if}
   </div>
 
-  <label class="secret-toggle">
-    <input type="checkbox" checked={field.secret} onchange={toggleSecret} />
-    <span>Secret (mask this value)</span>
-  </label>
+  {#if !readonly}
+    <label class="secret-toggle">
+      <input type="checkbox" checked={field.secret} onchange={toggleSecret} />
+      <span>Secret (mask this value)</span>
+    </label>
+  {/if}
 
   {#if error}
     <p class="field-error" role="alert">{error}</p>
@@ -342,6 +352,21 @@
     outline: none;
     border-color: var(--kh-accent);
     box-shadow: 0 0 0 3px var(--kh-accent-subtle);
+  }
+
+  /* Read-only (View) appearance: inputs look like static text, not editable. */
+  .field-row.readonly input[readonly] {
+    background-color: var(--kh-surface-sunken);
+    cursor: default;
+  }
+
+  /* The field label in View mode is a small caption, not a text field. */
+  .ro-label {
+    font-size: var(--kh-font-size-xs);
+    font-weight: var(--kh-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--kh-text-subtle);
   }
 
   .icon-btn {

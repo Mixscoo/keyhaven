@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Keyhaven — Tokens, SSH, Signing &amp; CI: A Field Guide</title>
+    <style>
+      :root {
+        --ink: #1f2933;
+        --muted: #5b6b7b;
+        --subtle: #8896a5;
+        --accent: #2f6da8;
+        --line: #e3e8ef;
+        --bg: #ffffff;
+        --code-bg: #f4f6fa;
+      }
+      * { box-sizing: border-box; }
+      html { font-size: 11.5pt; }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--bg);
+        font-family: "Segoe UI", Inter, system-ui, Arial, sans-serif;
+        line-height: 1.55;
+      }
+      .page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 28px 36px;
+      }
+      h1, h2, h3 { line-height: 1.25; color: var(--ink); }
+      h1 { font-size: 1.9rem; margin: 0 0 .2em; }
+      h2 {
+        font-size: 1.4rem;
+        margin: 1.6em 0 .5em;
+        padding-bottom: .2em;
+        border-bottom: 2px solid var(--line);
+        color: var(--accent);
+      }
+      h3 { font-size: 1.12rem; margin: 1.2em 0 .35em; }
+      p, li { color: #29333d; }
+      .muted { color: var(--muted); }
+      code {
+        font-family: "SF Mono", "Segoe UI Mono", ui-monospace, monospace;
+        background: var(--code-bg);
+        padding: 1px 5px;
+        border-radius: 5px;
+        font-size: .9em;
+      }
+      pre {
+        background: var(--code-bg);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        font-size: .85rem;
+      }
+      pre code { background: none; padding: 0; }
+      table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .92rem; }
+      th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+      th { background: #eef2f7; }
+      .callout { border-radius: 8px; padding: 12px 14px; margin: 1em 0; font-size: .94rem; }
+      .note { background: #e7f0f9; border: 1px solid #3b82c4; }
+      .tip { background: #eef6f1; border: 1px solid #4f9d69; }
+      .warn { background: #f8f1df; border: 1px solid #c9961f; }
+      .danger { background: #f7ebea; border: 1px solid #c0564b; }
+      .callout strong { display: inline-block; }
+      .cover { text-align: center; padding-top: 120px; }
+      .cover .kicker { color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; }
+      .cover h1 { font-size: 2.6rem; margin: .25em 0; }
+      .cover .sub { color: var(--muted); font-size: 1.1rem; }
+      .cover .meta { color: var(--subtle); font-size: .9rem; margin-top: 40px; }
+      .toc ol { line-height: 1.9; }
+      .chapter { page-break-before: always; }
+      .figure { page-break-before: always; text-align: center; }
+      .figure svg { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+      .figure figcaption { color: var(--muted); font-size: .9rem; margin-top: 8px; }
+      @page { size: A4; margin: 16mm 14mm; }
+      @media print {
+        .page { max-width: none; padding: 0; }
+        a { color: var(--ink); text-decoration: none; }
+        pre, table, .callout { page-break-inside: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- COVER -->
+      <section class="cover">
+        <div class="kicker">A Keyhaven Field Guide</div>
+        <h1>Tokens, SSH, Signing &amp; CI</h1>
+        <p class="sub">How GitHub knows it's you, how your app's updates stay trustworthy,<br />and how the robots build and ship your releases.</p>
+        <p class="meta">Written for the Keyhaven project · keep this for when you fly solo.</p>
+      </section>
+
+      <!-- TOC -->
+      <section class="chapter toc">
+        <h1>Contents</h1>
+        <ol>
+          <li>The big picture — four things, two jobs</li>
+          <li>Authentication 1: Personal Access Tokens</li>
+          <li>Authentication 2: SSH keys</li>
+          <li>Signing keys — trustworthy app updates</li>
+          <li>CI/CD — the robot that builds and ships</li>
+          <li>Do-it-yourself: release checklist</li>
+          <li>Glossary &amp; cheat sheet</li>
+        </ol>
+        <p class="muted">Tip: this is a printable e-book. Open it in a browser and choose <strong>Print → Save as PDF</strong> if you ever need a fresh copy.</p>
+      </section>
+
+      <!-- ILLUSTRATION -->
+      <figure class="figure">
+        <img src="keyhaven-devops-illustration.svg" alt="Diagram: identity, signing and CI flow" />
+        <figcaption>The whole flow on one page — keep this handy while the chapters explain each step.</figcaption>
+      </figure>
+
+      <!-- CHAPTER 1 -->
+      <section class="chapter">
+        <h1>1 · The big picture — four things, two jobs</h1>
+        <p>
+          Everything that confused you boils down to <strong>four pieces</strong> doing
+          <strong>two kinds of job</strong>. Get this map straight and the rest clicks.
+        </p>
+        <h3>The two jobs</h3>
+        <ul>
+          <li><strong>Authentication</strong> — proving <em>who you are</em>. ("GitHub, it's me, Mixscoo.")</li>
+          <li><strong>Signing</strong> — proving <em>a file is genuine and untampered</em>. ("User's app: this update really came from Keyhaven.")</li>
+        </ul>
+        <p>They use different keys, aimed at different audiences. People mix them up constantly — you won't anymore.</p>
+        <h3>The four pieces</h3>
+        <table>
+          <thead><tr><th>Piece</th><th>Its one job</th><th>Audience</th><th>Lives where</th></tr></thead>
+          <tbody>
+            <tr><td>Access token (PAT)</td><td>proves YOU</td><td>GitHub</td><td>your PC (keyring)</td></tr>
+            <tr><td>SSH key</td><td>proves YOU (alt. to token)</td><td>GitHub</td><td>your PC (<code>~/.ssh</code>)</td></tr>
+            <tr><td>Signing key (private+public)</td><td>proves an update is genuine</td><td>users' apps</td><td>CI secret + your backup / baked in app</td></tr>
+            <tr><td>CI (GitHub Actions)</td><td>builds, signs &amp; ships automatically</td><td>—</td><td>GitHub's servers</td></tr>
+          </tbody>
+        </table>
+        <div class="callout note">
+          <strong>One sentence to remember:</strong> a <em>token/SSH key</em> proves you to GitHub; a <em>signing key</em> proves your updates to users; <em>CI</em> is the robot that ties it together on a version tag.
+        </div>
+      </section>
+
+      <!-- CHAPTER 2 -->
+      <section class="chapter">
+        <h1>2 · Authentication 1 — Personal Access Tokens</h1>
+        <p>
+          A <strong>Personal Access Token (PAT)</strong> is a long, random secret string that
+          works as a password replacement. GitHub turned off real-password git access in 2021,
+          so you authenticate with a token (or SSH, next chapter).
+        </p>
+        <h3>Why a token beats a password</h3>
+        <ul>
+          <li><strong>Scoped</strong> — you choose what it can do (e.g. only touch one repo's contents).</li>
+          <li><strong>Revocable</strong> — delete it anytime without changing your account password.</li>
+          <li><strong>Expirable</strong> — you can give it a lifetime.</li>
+        </ul>
+        <h3>Create one by hand</h3>
+        <ol>
+          <li>github.com → your avatar → <strong>Settings</strong></li>
+          <li>Bottom-left → <strong>Developer settings</strong></li>
+          <li><strong>Personal access tokens</strong> → <strong>Fine-grained tokens</strong> → <strong>Generate new token</strong></li>
+          <li>Pick a name, expiry, the repo(s) it may access, and permissions (e.g. <em>Contents: Read and write</em>)</li>
+          <li><strong>Generate</strong>, then <strong>copy it immediately</strong> — GitHub shows it once and never again.</li>
+        </ol>
+        <h3>How it's used</h3>
+        <p>
+          When you <code>git push</code> over an <code>https://</code> remote, git sends the token as the
+          "password." A <strong>credential helper</strong> caches it so you don't paste it every time.
+          Think of it as swiping an ID badge: GitHub looks up the token, sees it maps to your account
+          with these permissions, and allows the action.
+        </p>
+        <h3>The easy way (what you actually did)</h3>
+        <p>
+          You didn't hand-make a PAT — you ran the GitHub CLI:
+        </p>
+        <pre><code>gh auth login        # opens a browser login, stores a token for you
+gh auth status       # shows the account + token it's using</code></pre>
+        <p>
+          That stored a token (<code>gho_…</code>) in your OS <strong>keyring</strong>. Same concept,
+          friendlier setup.
+        </p>
+        <div class="callout danger">
+          <strong>Never</strong> paste a token into code, screenshots, or chats. If one leaks, revoke it in
+          Settings → Developer settings and generate a new one.
+        </div>
+      </section>
+
+      <!-- CHAPTER 3 -->
+      <section class="chapter">
+        <h1>3 · Authentication 2 — SSH keys</h1>
+        <p>
+          SSH is the other way to prove you're you. Instead of sending a token, your machine
+          <em>proves</em> it holds a secret key — without ever transmitting it.
+        </p>
+        <h3>The key pair</h3>
+        <ul>
+          <li><strong>Private key</strong> — stays on your machine, never shared.</li>
+          <li><strong>Public key</strong> — you upload it to GitHub; it's safe to share.</li>
+        </ul>
+        <h3>How the handshake works</h3>
+        <p>
+          When you connect to <code>git@github.com</code>, GitHub issues a cryptographic challenge.
+          Your private key answers it; GitHub checks the answer against your uploaded public key.
+          If they match, you're in — no token typed.
+        </p>
+        <h3>Set it up</h3>
+        <ol>
+          <li>Generate a pair:
+            <pre><code>ssh-keygen -t ed25519 -C "mgbl2203@gmail.com"</code></pre>
+            This makes <code>~/.ssh/id_ed25519</code> (private — keep secret) and
+            <code>id_ed25519.pub</code> (public).
+          </li>
+          <li>Copy the contents of the <code>.pub</code> file.</li>
+          <li>GitHub → Settings → <strong>SSH and GPG keys</strong> → <strong>New SSH key</strong> → paste.</li>
+          <li>Use SSH remote URLs, e.g. <code>git@github.com:Mixscoo/keyhaven.git</code>.</li>
+        </ol>
+        <h3>Token vs SSH — pick one</h3>
+        <table>
+          <thead><tr><th></th><th>Token / HTTPS</th><th>SSH</th></tr></thead>
+          <tbody>
+            <tr><td>Setup</td><td>simplest (esp. with <code>gh</code>)</td><td>generate + upload key</td></tr>
+            <tr><td>Expiry to manage</td><td>often yes</td><td>no</td></tr>
+            <tr><td>Best when</td><td>occasional use, CLI tooling</td><td>you push constantly</td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip">
+          You're on <strong>token + HTTPS</strong> already. That's perfectly good — you don't need SSH
+          unless you prefer it.
+        </div>
+      </section>
+
+      <!-- CHAPTER 4 -->
+      <section class="chapter">
+        <h1>4 · Signing keys — trustworthy app updates</h1>
+        <p>
+          This key has <strong>nothing to do with GitHub identity</strong>. Its audience is your
+          <em>users' installed apps</em>. Because Keyhaven auto-downloads updates from the internet,
+          each app must be sure an update is really yours and untampered — otherwise a poisoned
+          "update" could steal vaults. Signing guarantees authenticity.
+        </p>
+        <h3>The wax-seal analogy</h3>
+        <p>
+          Only you own the signet ring (the <strong>private key</strong>) that stamps each release.
+          Everyone recognizes your seal (the <strong>public key</strong>) but can't forge it. A release
+          with a valid seal is trusted; a missing/wrong seal is rejected.
+        </p>
+        <h3>Create the key</h3>
+        <pre><code>npm run tauri signer generate -w keyhaven-updater.key --ci</code></pre>
+        <p>This produces <code>keyhaven-updater.key</code> (private) and <code>keyhaven-updater.key.pub</code> (public).</p>
+        <h3>Set it up</h3>
+        <ol>
+          <li><strong>Public key</strong> → paste into <code>src-tauri/tauri.conf.json</code> under
+            <code>plugins.updater.pubkey</code>. It gets baked into every build.</li>
+          <li><strong>Private key</strong> → store as a GitHub <strong>Actions secret</strong> so CI can sign:
+            <pre><code>Get-Content keyhaven-updater.key -Raw | gh secret set TAURI_SIGNING_PRIVATE_KEY</code></pre>
+            (Or repo → Settings → Secrets and variables → Actions → New repository secret.)</li>
+          <li>Also set <code>TAURI_SIGNING_PRIVATE_KEY_PASSWORD</code> (empty if the key has no passphrase).</li>
+          <li><strong>Back up</strong> <code>keyhaven-updater.key</code> somewhere safe and never commit it.</li>
+        </ol>
+        <h3>How it flows</h3>
+        <p>
+          CI signs each installer with the private key → produces a <code>.sig</code> + a
+          <code>latest.json</code> → uploads them to the release. A user's app downloads the update and
+          its <code>.sig</code>, then verifies it with the embedded public key. Valid → install; invalid → reject.
+        </p>
+        <div class="callout danger">
+          <strong>Guard this key with your life.</strong> The public half is permanently embedded in every
+          installed copy. If you lose the private key and generate a new one, all existing installs will
+          <em>reject</em> future updates (the seal no longer matches). Back it up.
+        </div>
+        <div class="callout warn">
+          A local <code>npm run tauri build</code> that says <em>"no private key"</em> is normal — your laptop
+          doesn't hold the signing key. The installers still build fine; signing happens in CI. To sign
+          locally, set <code>TAURI_SIGNING_PRIVATE_KEY</code> from your key file first.
+        </div>
+      </section>
+
+      <!-- CHAPTER 5 -->
+      <section class="chapter">
+        <h1>5 · CI/CD — the robot that builds and ships</h1>
+        <p>
+          <strong>CI</strong> = Continuous Integration. In plain terms: <strong>robot computers on
+          GitHub's servers that automatically run your commands when something happens</strong> (a push,
+          a tag, a pull request). <strong>CI/CD</strong> adds "Continuous Delivery" — it also publishes
+          the result (your installers).
+        </p>
+        <h3>Why bother</h3>
+        <ul>
+          <li>Builds on clean machines — no "works on my laptop" surprises.</li>
+          <li>Builds <strong>Windows, macOS, and Linux at once</strong> — your one PC can't.</li>
+          <li>Signs and publishes automatically, so a release is one command.</li>
+        </ul>
+        <h3>GitHub Actions vocabulary</h3>
+        <table>
+          <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>Workflow</td><td>a YAML file in <code>.github/workflows/</code> describing the steps (yours: <code>release.yml</code>)</td></tr>
+            <tr><td>Trigger (<code>on:</code>)</td><td>what starts it — yours: pushing a tag like <code>v1.2.0</code></td></tr>
+            <tr><td>Runner</td><td>the throwaway virtual machine GitHub boots</td></tr>
+            <tr><td>Job</td><td>a group of steps on a runner (yours repeats across 4 OS targets via a "matrix")</td></tr>
+            <tr><td>Step</td><td>one command or action (checkout, install, build…)</td></tr>
+            <tr><td>Secret</td><td>an encrypted value injected as an env var, masked in logs (your signing key)</td></tr>
+          </tbody>
+        </table>
+        <h3>What a run does (your release.yml, end to end)</h3>
+        <ol>
+          <li>You push tag <code>v1.2.0</code> → GitHub sees the <code>on: push: tags: v*</code> trigger.</li>
+          <li>It boots fresh VMs (Windows, macOS ×2, Linux).</li>
+          <li>Each runs: checkout → install Node → install Rust → install deps → <strong>build</strong> →
+            <strong>sign</strong> (using the secret) → <strong>create the Release</strong> and upload
+            installers + <code>latest.json</code>.</li>
+          <li>A temporary <code>GITHUB_TOKEN</code> (auto-created per run, expires at the end) lets the
+            workflow publish on your behalf.</li>
+          <li>Green checkmarks; the release appears with downloads.</li>
+        </ol>
+        <div class="callout note">
+          <strong>Two different "GitHub tokens":</strong> your <code>gho_…</code> token authenticates <em>you</em>
+          from your PC; the workflow's <code>GITHUB_TOKEN</code> is a short-lived one GitHub mints for each
+          CI run so the robot can act on the repo.
+        </div>
+        <h3>How you use / change it</h3>
+        <ul>
+          <li><strong>Use:</strong> <code>npm run release 1.2.0</code> (pushes the tag → triggers CI).</li>
+          <li><strong>Watch:</strong> <code>gh run watch</code> or the repo's <strong>Actions</strong> tab.</li>
+          <li><strong>Change:</strong> edit <code>.github/workflows/release.yml</code>.</li>
+        </ul>
+      </section>
+
+      <!-- CHAPTER 6 -->
+      <section class="chapter">
+        <h1>6 · Do-it-yourself — release checklist</h1>
+        <p>When you want to ship an update entirely on your own:</p>
+        <ol>
+          <li><strong>Make the changes</strong> (code/features/fixes).</li>
+          <li><strong>Verify locally:</strong> <code>npm run check</code> and <code>npm test</code> (and
+            optionally <code>npm run tauri build</code> to smoke-test).</li>
+          <li><strong>Commit &amp; push</strong> the changes to the repo.</li>
+          <li><strong>Pick the version</strong> with SemVer:
+            <ul>
+              <li>bug fix → patch (1.1.0 → 1.1.1)</li>
+              <li>new feature → minor (1.1.0 → 1.2.0)</li>
+              <li>breaking change → major (1.x → 2.0.0)</li>
+            </ul>
+          </li>
+          <li><strong>Release:</strong> <code>npm run release 1.2.0</code> — bumps every manifest, commits,
+            tags, pushes; the guard refuses anything not higher than the current version.</li>
+          <li><strong>Done.</strong> CI builds, signs, and publishes. Users on the prior signed version
+            auto-update on next launch.</li>
+        </ol>
+        <div class="callout tip">
+          The version you type is the <em>only</em> place it lives — the script writes it into all manifests
+          and the in-app Settings display follows automatically. Never hand-edit version numbers.
+        </div>
+        <div class="callout warn">
+          Only versions <strong>≥ the first signed release</strong> auto-update. Anyone on an older build
+          installs the new one manually once, then they're on the auto-update train.
+        </div>
+      </section>
+
+      <!-- CHAPTER 7 -->
+      <section class="chapter">
+        <h1>7 · Glossary &amp; cheat sheet</h1>
+        <table>
+          <thead><tr><th>Term</th><th>In one line</th></tr></thead>
+          <tbody>
+            <tr><td>Authentication</td><td>proving <em>who you are</em></td></tr>
+            <tr><td>Signing</td><td>proving a <em>file is genuine &amp; untampered</em></td></tr>
+            <tr><td>PAT / access token</td><td>secret string that proves you to GitHub over HTTPS</td></tr>
+            <tr><td>SSH key</td><td>key pair that proves you to GitHub over SSH</td></tr>
+            <tr><td>Private signing key</td><td>signs updates; secret; CI + your backup</td></tr>
+            <tr><td>Public signing key</td><td>verifies updates; baked into the app</td></tr>
+            <tr><td>Actions secret</td><td>encrypted value stored in the repo, used by CI</td></tr>
+            <tr><td><code>GITHUB_TOKEN</code></td><td>temporary per-run token CI uses to publish</td></tr>
+            <tr><td>CI / CD</td><td>robot that builds (CI) and ships (CD) automatically</td></tr>
+            <tr><td>Workflow</td><td>YAML recipe in <code>.github/workflows/</code></td></tr>
+            <tr><td>Runner</td><td>throwaway VM that runs a workflow</td></tr>
+            <tr><td>SemVer</td><td>MAJOR.MINOR.PATCH versioning</td></tr>
+            <tr><td><code>latest.json</code></td><td>file the updater reads to learn the newest version</td></tr>
+            <tr><td><code>.sig</code></td><td>signature proving an installer is genuine</td></tr>
+          </tbody>
+        </table>
+        <h3>Command cheat sheet</h3>
+        <pre><code>gh auth status                 # who am I to GitHub?
+git push                       # uses your token/SSH to authenticate
+npm run check &amp;&amp; npm test      # verify before releasing
+npm run release 1.2.0          # bump + commit + tag + push (triggers CI)
+gh run watch                   # follow the CI build
+gh run list --workflow=release.yml</code></pre>
+        <div class="callout note">
+          <strong>The whole story in one breath:</strong> you authenticate to GitHub with a token (or SSH);
+          you push a version tag; CI builds your app on clean machines and signs it with your private key;
+          GitHub publishes the release; users' apps verify the signature with the baked-in public key and
+          update themselves. Four pieces, two jobs, one smooth pipeline.
+        </div>
+        <p class="muted" style="text-align:center;margin-top:32px;">— End of guide · Keyhaven —</p>
+      </section>
+
+      <!-- INSERT-MARKER -->
+    </div>
+  </body>
+</html>

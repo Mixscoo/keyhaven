@@ -161,6 +161,21 @@ const SERVICES = [
   { id: "ebay-classifieds", name: "Etsy", aliases: ["etsy", "handmade", "shop"], recommended_fields: emailLogin() },
   { id: "yandex", name: "Yandex", aliases: ["yandex mail", "ru"], recommended_fields: emailLogin2fa() },
   { id: "wechat", name: "WeChat", aliases: ["weixin", "tencent", "messenger"], recommended_fields: phoneLogin() },
+
+  // ---- Batch update: gaming, PH services, crypto, and more ----
+  { id: "socialclub", name: "Social Club", aliases: ["rockstar", "rockstar games", "rgl", "gta", "rdr", "gta online"], recommended_fields: emailLogin2fa() },
+  { id: "ea", name: "EA / Origin", aliases: ["origin", "ea app", "electronic arts", "ea play"], recommended_fields: emailLogin2fa() },
+  { id: "sellix", name: "Sellix", aliases: ["sell", "selling", "ecommerce", "store"], recommended_fields: [EMAIL(), PASSWORD(), TOTP()] },
+  { id: "coinsph", name: "Coins.ph", aliases: ["coins", "coins ph", "crypto", "wallet", "ph", "philippines"], recommended_fields: financial() },
+  { id: "pldt", name: "PLDT", aliases: ["pldt home", "wifi", "internet", "fibr", "ph", "philippines"], recommended_fields: [EMAIL(), PHONE(), PASSWORD()] },
+  { id: "rcbc", name: "RCBC", aliases: ["rizal commercial banking", "rcbc online", "bank", "ph", "philippines"], recommended_fields: [USERNAME(), EMAIL(), PASSWORD(), TOTP()] },
+  { id: "okx", name: "OKX", aliases: ["okex", "crypto", "exchange"], recommended_fields: financial() },
+  { id: "metamask", name: "MetaMask", aliases: ["wallet", "crypto", "web3", "eth", "ethereum"], recommended_fields: [f("Wallet password", T.PASSWORD, true), f("Secret Recovery Phrase", T.RECOVERY, true)] },
+  { id: "chatgpt", name: "ChatGPT", aliases: ["openai", "gpt", "chat gpt"], recommended_fields: emailLogin2fa() },
+  { id: "payoneer", name: "Payoneer", aliases: ["payments", "payout", "wallet"], recommended_fields: financial() },
+  { id: "kiro", name: "Kiro", aliases: ["kiro dev", "ai ide", "ide"], recommended_fields: emailLogin2fa() },
+  { id: "datablitz", name: "DataBlitz", aliases: ["data blitz", "games", "gaming store", "ph", "philippines"], recommended_fields: emailLogin() },
+  { id: "onlinejobs", name: "OnlineJobs.ph", aliases: ["online jobs", "ojph", "remote work", "freelance", "ph", "philippines"], recommended_fields: emailLogin() },
 ];
 
 // ----------------------------------------------------------------------------
@@ -224,6 +239,8 @@ const SLUG_OVERRIDES = Object.freeze({
   "ebay-classifieds": "etsy",
   booking: "bookingdotcom",
   microsoft: "microsoftoutlook", // generic "microsoft" mark isn't published
+  socialclub: "rockstargames",
+  chatgpt: "openai",
 });
 
 function slugFor(service) {
@@ -265,26 +282,123 @@ const DOMAIN_FALLBACK = Object.freeze({
   heroku: "heroku.com",
   kraken: "kraken.com",
   yandex: "yandex.com",
+  // Batch-update services (favicon backup when Simple Icons has no match).
+  socialclub: "socialclub.rockstargames.com",
+  ea: "ea.com",
+  sellix: "sellix.com",
+  coinsph: "coins.ph",
+  pldt: "pldthome.com",
+  rcbc: "rcbc.com",
+  okx: "okx.com",
+  metamask: "metamask.io",
+  chatgpt: "chatgpt.com",
+  payoneer: "payoneer.com",
+  kiro: "kiro.dev",
+  datablitz: "datablitz.com.ph",
+  onlinejobs: "onlinejobs.ph",
 });
 
 /**
- * Fetch a site's favicon as a PNG data URL (build-time only). Returns null on
+ * Fetch a site's favicon as a data URL (build-time only). Returns null on
  * failure so the caller can fall back to a monogram.
  */
-async function fetchFavicon(domain) {
+const BROWSER_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+
+/** fetch with an abort timeout so a slow/blocking site can't hang the build. */
+async function fetchWithTimeout(url, ms = 9000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
   try {
-    const res = await fetch(
-      `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
-    );
-    if (!res.ok) return null;
-    const buf = Buffer.from(await res.arrayBuffer());
-    // Guard against tiny placeholder/empty responses.
-    if (buf.length < 200) return null;
-    const contentType = res.headers.get("content-type") || "image/png";
-    return `data:${contentType};base64,${buf.toString("base64")}`;
-  } catch {
-    return null;
+    return await fetch(url, {
+      redirect: "follow",
+      signal: controller.signal,
+      headers: { "User-Agent": BROWSER_UA, Accept: "*/*" },
+    });
+  } finally {
+    clearTimeout(timer);
   }
+}
+
+function toDataUrl(buf, contentType) {
+  const ct = (contentType || "image/png").split(";")[0];
+  return `data:${ct};base64,${buf.toString("base64")}`;
+}
+
+/**
+ * Pull a HIGH-RES icon straight from the site's HTML (apple-touch-icon, an SVG
+ * favicon, or the largest declared icon). This yields crisp logos where favicon
+ * proxies only return a tiny, blurry image. Returns a data URL or null.
+ */
+async function fetchSiteIcon(domain) {
+  for (const base of [`https://${domain}/`, `https://www.${domain}/`]) {
+    try {
+      const res = await fetchWithTimeout(base);
+      if (!res.ok) continue;
+      const html = await res.text();
+      const tags = (html.match(/<link[^>]+>/gi) || []).filter(
+        (t) => /rel=["'][^"']*icon/i.test(t) && !/mask-icon/i.test(t),
+      );
+      const candidates = [];
+      for (const tag of tags) {
+        const href = (tag.match(/href=["']([^"']+)["']/i) || [])[1];
+        if (!href) continue;
+        const sizes = (tag.match(/sizes=["']([^"']+)["']/i) || [])[1] || "";
+        const isApple = /apple-touch-icon/i.test(tag);
+        const isSvg = /\.svg(\?|$)/i.test(href);
+        const dim = parseInt((sizes.match(/(\d+)x\d+/) || [])[1] || "0", 10);
+        // Prefer crisp vector, then apple-touch, then largest declared size.
+        const score = (isSvg ? 1000 : 0) + (isApple ? 200 : 0) + dim;
+        try {
+          candidates.push({ url: new URL(href, base).href, score });
+        } catch {
+          /* skip malformed href */
+        }
+      }
+      candidates.sort((a, b) => b.score - a.score);
+      for (const cand of candidates.slice(0, 4)) {
+        try {
+          const ir = await fetchWithTimeout(cand.url);
+          if (!ir.ok) continue;
+          const ct = ir.headers.get("content-type") || "";
+          if (!/image\//i.test(ct)) continue;
+          const buf = Buffer.from(await ir.arrayBuffer());
+          if (buf.length < 600) continue; // too small / likely blurry
+          return toDataUrl(buf, ct);
+        } catch {
+          /* try next candidate */
+        }
+      }
+    } catch {
+      /* try next base */
+    }
+  }
+  return null;
+}
+
+/**
+ * Best available raster/vector icon for a domain: a crisp icon from the site's
+ * own HTML first, then Google's favicon service (256px, then 128px).
+ */
+async function fetchFavicon(domain) {
+  const fromSite = await fetchSiteIcon(domain);
+  if (fromSite) return fromSite;
+
+  for (const url of [
+    `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=256`,
+    `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+  ]) {
+    try {
+      const res = await fetchWithTimeout(url);
+      if (!res.ok) continue;
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (buf.length < 200) continue;
+      return toDataUrl(buf, res.headers.get("content-type") || "image/png");
+    } catch {
+      /* try next source */
+    }
+  }
+  return null;
 }
 
 // ----------------------------------------------------------------------------

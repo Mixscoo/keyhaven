@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 980" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#5b6b7b" />
+    </marker>
+    <style>
+      .box { rx: 12; ry: 12; stroke-width: 2; }
+      .you { fill: #eef6f1; stroke: #4f9d69; }
+      .gh { fill: #e7f0f9; stroke: #3b82c4; }
+      .ci { fill: #f8f1df; stroke: #c9961f; }
+      .app { fill: #eef2f7; stroke: #8896a5; }
+      .ok { fill: #eef6f1; stroke: #4f9d69; }
+      .t { fill: #1f2933; font-size: 16px; font-weight: 700; }
+      .s { fill: #5b6b7b; font-size: 12.5px; }
+      .arrow { stroke: #5b6b7b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .cap { fill: #2f6da8; font-size: 12.5px; font-weight: 600; }
+      .legendk { fill: #1f2933; font-size: 12.5px; font-weight: 700; }
+      .legendv { fill: #5b6b7b; font-size: 12px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="780" height="980" fill="#f7f9fc" />
+  <text x="390" y="46" text-anchor="middle" fill="#1f2933" font-size="24" font-weight="700">Keyhaven — Identity, Signing &amp; CI at a glance</text>
+  <text x="390" y="70" text-anchor="middle" class="s">How you reach GitHub, how a release is built &amp; signed, and how users get safe updates</text>
+
+  <!-- 1. YOU -->
+  <rect class="box you" x="190" y="92" width="400" height="64" />
+  <text x="390" y="120" text-anchor="middle" class="t">YOU — your computer</text>
+  <text x="390" y="140" text-anchor="middle" class="s">git push / gh commands</text>
+
+  <line class="arrow" x1="390" y1="156" x2="390" y2="200" />
+  <text x="404" y="182" class="cap">Access token (or SSH key) — GitHub recognizes you</text>
+
+  <!-- 2. GITHUB -->
+  <rect class="box gh" x="190" y="204" width="400" height="64" />
+  <text x="390" y="232" text-anchor="middle" class="t">GitHub — your repo (Mixscoo/keyhaven)</text>
+  <text x="390" y="252" text-anchor="middle" class="s">stores code, secrets, and releases</text>
+
+  <line class="arrow" x1="390" y1="268" x2="390" y2="312" />
+  <text x="404" y="294" class="cap">you push a version tag (e.g. v1.2.0)</text>
+
+  <!-- 3. CI -->
+  <rect class="box ci" x="150" y="316" width="480" height="80" />
+  <text x="390" y="346" text-anchor="middle" class="t">GitHub Actions (CI) — robot build servers</text>
+  <text x="390" y="366" text-anchor="middle" class="s">fresh Windows / macOS / Linux machines run your workflow:</text>
+  <text x="390" y="384" text-anchor="middle" class="s">build installers, then SIGN them with the PRIVATE key (from an Actions secret)</text>
+
+  <line class="arrow" x1="390" y1="396" x2="390" y2="440" />
+  <text x="404" y="422" class="cap">publishes the release</text>
+
+  <!-- 4. RELEASE -->
+  <rect class="box gh" x="150" y="444" width="480" height="80" />
+  <text x="390" y="474" text-anchor="middle" class="t">GitHub Release</text>
+  <text x="390" y="494" text-anchor="middle" class="s">installers (.exe / .msi / .dmg / .deb / .AppImage)</text>
+  <text x="390" y="512" text-anchor="middle" class="s">+ latest.json + .sig signature files</text>
+
+  <line class="arrow" x1="390" y1="524" x2="390" y2="568" />
+  <text x="404" y="550" class="cap">app checks for updates &amp; downloads</text>
+
+  <!-- 5. USER APP -->
+  <rect class="box app" x="190" y="572" width="400" height="64" />
+  <text x="390" y="600" text-anchor="middle" class="t">User's installed Keyhaven</text>
+  <text x="390" y="620" text-anchor="middle" class="s">has the PUBLIC key baked inside</text>
+
+  <line class="arrow" x1="390" y1="636" x2="390" y2="680" />
+  <text x="404" y="662" class="cap">verify .sig with the PUBLIC key</text>
+
+  <!-- 6. RESULT -->
+  <rect class="box ok" x="150" y="684" width="480" height="64" />
+  <text x="390" y="712" text-anchor="middle" class="t">Signature valid? ✓ install &amp; relaunch  ·  ✗ reject the file</text>
+  <text x="390" y="732" text-anchor="middle" class="s">a tampered or fake "update" can't be signed, so the app refuses it</text>
+
+  <!-- LEGEND -->
+  <rect x="60" y="788" width="660" height="160" rx="14" fill="#ffffff" stroke="#e3e8ef" stroke-width="1.5" />
+  <text x="80" y="816" fill="#1f2933" font-size="15" font-weight="700">The three "keys/secrets" — don't mix them up</text>
+
+  <circle cx="92" cy="844" r="5" fill="#3b82c4" />
+  <text x="106" y="848" class="legendk">Access token / SSH key</text>
+  <text x="300" y="848" class="legendv">proves YOU to GitHub · lives on your PC</text>
+
+  <circle cx="92" cy="874" r="5" fill="#c9961f" />
+  <text x="106" y="878" class="legendk">Signing PRIVATE key</text>
+  <text x="300" y="878" class="legendv">signs updates · GitHub Actions secret + your backup</text>
+
+  <circle cx="92" cy="904" r="5" fill="#4f9d69" />
+  <text x="106" y="908" class="legendk">Signing PUBLIC key</text>
+  <text x="300" y="908" class="legendv">verifies updates · baked into every installed app</text>
+
+  <circle cx="92" cy="934" r="5" fill="#8896a5" />
+  <text x="106" y="938" class="legendk">CI</text>
+  <text x="300" y="938" class="legendv">the robot that builds, signs &amp; publishes on a version tag</text>
+</svg>

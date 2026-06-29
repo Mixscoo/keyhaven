@@ -139,11 +139,26 @@
     void commit({ ...clone(current), clipboard_clear_seconds: value });
   }
 
-  function onLengthChange(event: Event): void {
-    const value = clampLength(Number((event.currentTarget as HTMLInputElement).value));
+  // Live length value for the slider/stepper. Updated immediately on drag (no
+  // save), and persisted via `commitLength` on release / typed entry / +/-.
+  let lengthValue = $state(get(settings).password_gen_defaults.length);
+  $effect(() => {
+    lengthValue = current.password_gen_defaults.length;
+  });
+
+  /** Persist a new length (clamped) to the vault. */
+  function commitLength(n: number): void {
+    const value = clampLength(n);
+    lengthValue = value;
+    if (value === current.password_gen_defaults.length) return;
     const next = clone(current);
     next.password_gen_defaults.length = value;
     void commit(next);
+  }
+
+  /** Live update while dragging the slider (no save until release). */
+  function onLengthInput(event: Event): void {
+    lengthValue = clampLength(Number((event.currentTarget as HTMLInputElement).value));
   }
 
   type Charset = "upper" | "lower" | "digits" | "symbols";
@@ -325,20 +340,53 @@
       These seed the generator when you create or edit an entry.
     </p>
 
-    <div class="row">
+    <div class="row length-row">
       <div class="row-text">
-        <label for="gen-length">Length: {current.password_gen_defaults.length}</label>
+        <span class="row-label">Length: {lengthValue}</span>
+        <p class="hint">
+          How many characters generated passwords have ({MIN_LENGTH}–{MAX_LENGTH}).
+        </p>
       </div>
-      <input
-        id="gen-length"
-        class="range"
-        type="range"
-        min={MIN_LENGTH}
-        max={MAX_LENGTH}
-        value={current.password_gen_defaults.length}
-        onchange={onLengthChange}
-        aria-label="Default generated password length"
-      />
+      <div class="length-control">
+        <button
+          class="step"
+          type="button"
+          aria-label="Decrease length"
+          onclick={() => commitLength(lengthValue - 1)}
+          disabled={lengthValue <= MIN_LENGTH}
+        >
+          −
+        </button>
+        <input
+          id="gen-length"
+          class="range"
+          type="range"
+          min={MIN_LENGTH}
+          max={MAX_LENGTH}
+          value={lengthValue}
+          oninput={onLengthInput}
+          onchange={(e) => commitLength(Number((e.currentTarget as HTMLInputElement).value))}
+          aria-label="Default generated password length"
+        />
+        <button
+          class="step"
+          type="button"
+          aria-label="Increase length"
+          onclick={() => commitLength(lengthValue + 1)}
+          disabled={lengthValue >= MAX_LENGTH}
+        >
+          +
+        </button>
+        <input
+          class="num"
+          type="number"
+          min={MIN_LENGTH}
+          max={MAX_LENGTH}
+          value={lengthValue}
+          onchange={(e) => commitLength(Number((e.currentTarget as HTMLInputElement).value))}
+          aria-label="Length value"
+        />
+      </div>
     </div>
 
     <div class="row">
@@ -346,8 +394,8 @@
         <span class="row-label">Character sets</span>
         <p class="hint">At least one set stays selected.</p>
       </div>
-      <div class="charsets">
-        <label class="charset">
+      <div class="charsets" role="group" aria-label="Character sets">
+        <label class="chip" class:active={current.password_gen_defaults.upper}>
           <input
             type="checkbox"
             checked={current.password_gen_defaults.upper}
@@ -355,7 +403,7 @@
           />
           <span>A–Z</span>
         </label>
-        <label class="charset">
+        <label class="chip" class:active={current.password_gen_defaults.lower}>
           <input
             type="checkbox"
             checked={current.password_gen_defaults.lower}
@@ -363,7 +411,7 @@
           />
           <span>a–z</span>
         </label>
-        <label class="charset">
+        <label class="chip" class:active={current.password_gen_defaults.digits}>
           <input
             type="checkbox"
             checked={current.password_gen_defaults.digits}
@@ -371,7 +419,7 @@
           />
           <span>0–9</span>
         </label>
-        <label class="charset">
+        <label class="chip" class:active={current.password_gen_defaults.symbols}>
           <input
             type="checkbox"
             checked={current.password_gen_defaults.symbols}
@@ -520,11 +568,111 @@
     line-height: var(--kh-line-height);
   }
 
-  /* ---- Range ---- */
+  /* ---- Length control (slider + stepper) ---- */
+  .length-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--kh-space-3);
+  }
+
+  .length-control {
+    display: flex;
+    align-items: center;
+    gap: var(--kh-space-3);
+  }
+
   .range {
-    flex: 0 0 220px;
-    max-width: 50%;
-    accent-color: var(--kh-accent);
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 8px;
+    margin: 0;
+    border-radius: var(--kh-radius-pill);
+    background: var(--kh-surface-sunken);
+    border: 1px solid var(--kh-border);
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+
+  .range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--kh-accent);
+    border: 3px solid var(--kh-surface);
+    box-shadow: var(--kh-shadow-sm);
+    cursor: pointer;
+    transition: background var(--kh-motion-fast) var(--kh-ease);
+  }
+
+  .range::-webkit-slider-thumb:hover {
+    background: var(--kh-accent-hover);
+  }
+
+  .range::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--kh-accent);
+    border: 3px solid var(--kh-surface);
+    box-shadow: var(--kh-shadow-sm);
+    cursor: pointer;
+  }
+
+  .range:focus-visible {
+    outline: none;
+    border-color: var(--kh-accent);
+    box-shadow: 0 0 0 3px var(--kh-accent-subtle);
+  }
+
+  .step {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--kh-font-size-lg);
+    line-height: 1;
+    background: var(--kh-surface);
+    border: 1px solid var(--kh-border-strong);
+    border-radius: var(--kh-radius-sm);
+    color: var(--kh-text);
+    cursor: pointer;
+    transition:
+      border-color var(--kh-motion-fast) var(--kh-ease),
+      background var(--kh-motion-fast) var(--kh-ease);
+  }
+
+  .step:hover:not(:disabled) {
+    border-color: var(--kh-accent);
+    color: var(--kh-accent);
+  }
+
+  .step:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .num {
+    flex: 0 0 auto;
+    width: 64px;
+    padding: var(--kh-space-2) var(--kh-space-3);
+    text-align: center;
+    background-color: var(--kh-surface);
+    border: 1px solid var(--kh-border-strong);
+    border-radius: var(--kh-radius-sm);
+    color: var(--kh-text);
+    font: inherit;
+    font-weight: var(--kh-font-weight-semibold);
+  }
+
+  .num:focus-visible {
+    outline: none;
+    border-color: var(--kh-accent);
+    box-shadow: 0 0 0 3px var(--kh-accent-subtle);
   }
 
   /* ---- Toggle switch ---- */
@@ -577,27 +725,56 @@
     box-shadow: 0 0 0 3px var(--kh-accent-subtle);
   }
 
-  /* ---- Charset toggles ---- */
+  /* ---- Charset toggle chips ---- */
   .charsets {
     flex: 0 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--kh-space-3);
+    gap: var(--kh-space-2);
     justify-content: flex-end;
   }
 
-  .charset {
+  .chip {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: var(--kh-space-1);
+    padding: var(--kh-space-2) var(--kh-space-4);
+    border: 1px solid var(--kh-border-strong);
+    border-radius: var(--kh-radius-pill);
+    background: var(--kh-surface);
+    color: var(--kh-text-muted);
+    font-family: var(--kh-font-mono);
     font-size: var(--kh-font-size-sm);
-    color: var(--kh-text);
+    font-weight: var(--kh-font-weight-medium);
     cursor: pointer;
+    user-select: none;
+    transition:
+      background var(--kh-motion-fast) var(--kh-ease),
+      border-color var(--kh-motion-fast) var(--kh-ease),
+      color var(--kh-motion-fast) var(--kh-ease);
   }
 
-  .charset input {
-    accent-color: var(--kh-accent);
-    cursor: pointer;
+  /* The native checkbox drives state but is visually hidden. */
+  .chip input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .chip:hover {
+    border-color: var(--kh-accent);
+    color: var(--kh-text);
+  }
+
+  .chip.active {
+    background: var(--kh-accent-subtle);
+    border-color: var(--kh-accent);
+    color: var(--kh-accent-hover);
+  }
+
+  .chip:focus-within {
+    box-shadow: 0 0 0 3px var(--kh-accent-subtle);
   }
 
   /* ---- Backup guidance ---- */

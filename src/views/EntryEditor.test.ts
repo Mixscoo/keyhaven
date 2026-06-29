@@ -10,11 +10,9 @@ import type { Entry, Settings } from "../lib/types";
  * EntryEditor tests (Req 7.2 add fields, 7.3 remove fields, 7.4 secret masking
  * with reveal).
  *
- * We drive the editor in EDIT mode (the route carries an entryId) so it skips
- * the service picker, loads an existing entry via `get_entry`, and renders its
- * FieldRow editors. The mask/reveal and copy controls live in FieldRow, which
- * the editor composes — so exercising them here covers the editor's field
- * editing surface end-to-end.
+ * Existing entries open in a read-only View (the route carries an entryId);
+ * fields are visible with mask/reveal but not editable until the user clicks
+ * "Edit". Tests that change fields enter edit mode first via `enterEditMode`.
  */
 
 const sampleSettings: Settings = {
@@ -80,14 +78,18 @@ function valueInputs(): HTMLInputElement[] {
   return screen.getAllByLabelText("Field value") as HTMLInputElement[];
 }
 
+/** Switch from the read-only View into edit mode. */
+async function enterEditMode(): Promise<void> {
+  await fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+}
+
 describe("EntryEditor field editing", () => {
-  it("loads an existing entry's fields in edit mode", async () => {
+  it("loads an existing entry's fields (read-only View)", async () => {
     render(EntryEditor);
 
     await waitFor(() => expect(valueInputs()).toHaveLength(2));
-    expect((screen.getAllByLabelText("Field label")[0] as HTMLInputElement).value).toBe(
-      "Email",
-    );
+    // In View mode the label is a caption, not an editable field.
+    expect(screen.getByText("Email")).toBeInTheDocument();
   });
 
   it("masks a secret field by default and reveals it on toggle (Req 7.4)", async () => {
@@ -122,6 +124,7 @@ describe("EntryEditor field editing", () => {
   it("adds a new empty field when 'Add field' is clicked (Req 7.2)", async () => {
     render(EntryEditor);
     await waitFor(() => expect(valueInputs()).toHaveLength(2));
+    await enterEditMode();
 
     await fireEvent.click(screen.getByRole("button", { name: /Add field/ }));
 
@@ -133,6 +136,7 @@ describe("EntryEditor field editing", () => {
   it("removes a field when its remove control is clicked (Req 7.3)", async () => {
     render(EntryEditor);
     await waitFor(() => expect(valueInputs()).toHaveLength(2));
+    await enterEditMode();
 
     const removeButtons = screen.getAllByLabelText("Remove field");
     await fireEvent.click(removeButtons[0]);
@@ -145,6 +149,7 @@ describe("EntryEditor field editing", () => {
   it("can add then remove a field, returning to the original count (Req 7.2, 7.3)", async () => {
     render(EntryEditor);
     await waitFor(() => expect(valueInputs()).toHaveLength(2));
+    await enterEditMode();
 
     await fireEvent.click(screen.getByRole("button", { name: /Add field/ }));
     await waitFor(() => expect(valueInputs()).toHaveLength(3));
