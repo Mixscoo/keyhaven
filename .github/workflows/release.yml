@@ -60,6 +60,13 @@ jobs:
         # official tauri-action examples use.
         run: npm install
 
+      - name: Build release notes
+        # Compose the GitHub Release body from CHANGELOG.md (user-facing notes)
+        # plus download instructions. Runs on Node, so it's identical on every
+        # runner OS. Exposes the result as steps.notes.outputs.body.
+        id: notes
+        run: node tools/release-notes.mjs "${{ github.ref_name }}"
+
       - name: Build and publish release
         uses: tauri-apps/tauri-action@v0
         env:
@@ -71,17 +78,7 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: "Keyhaven ${{ github.ref_name }}"
-          releaseBody: |
-            Keyhaven ${{ github.ref_name }} — offline-first, encrypted password manager.
-
-            Download the installer for your platform from the assets below.
-
-            - Windows: `.exe` (NSIS) or `.msi`
-            - macOS: `.dmg` (Intel and Apple Silicon)
-            - Linux: `.AppImage` or `.deb`
-
-            Note: builds are not code-signed yet, so your OS may show an
-            "unknown publisher" / Gatekeeper prompt on first launch.
+          releaseBody: ${{ steps.notes.outputs.body }}
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}

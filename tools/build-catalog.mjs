@@ -48,9 +48,9 @@
 //      | totp_secret | recovery_code
 // =============================================================================
 
-import { mkdir, writeFile, rm } from "node:fs/promises";
+import { mkdir, writeFile, rm, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, extname } from "node:path";
 
 // ----------------------------------------------------------------------------
 // Paths (resolved relative to this script, so it works from any CWD).
@@ -60,6 +60,25 @@ const WORKSPACE_ROOT = join(__dirname, "..");
 const OUTPUT_DIR = join(WORKSPACE_ROOT, "src-tauri", "catalog");
 const ICONS_DIR = join(OUTPUT_DIR, "icons");
 const CATALOG_JSON = join(OUTPUT_DIR, "services-catalog.json");
+
+// Hand-curated, high-quality logo files bundled in the repo. When a service id
+// appears here, its icon is taken from this local image (embedded as a data
+// URL) instead of being fetched online — used for brands whose live favicon is
+// low-resolution/blurry (e.g. Coins.ph, PLDT). These pre-processed PNGs were
+// cropped to a square and downscaled to 256x256 for crisp circular rendering.
+const ICON_OVERRIDES_DIR = join(__dirname, "icon-overrides");
+const LOCAL_ICON_OVERRIDES = Object.freeze({
+  coinsph: "coinsph.png",
+  pldt: "pldt.png",
+});
+
+/** Read a bundled override image and return it as a data URL (build-time only). */
+async function localIconDataUrl(fileName) {
+  const buf = await readFile(join(ICON_OVERRIDES_DIR, fileName));
+  const ext = extname(fileName).toLowerCase();
+  const ct = ext === ".png" ? "image/png" : ext === ".svg" ? "image/svg+xml" : "image/jpeg";
+  return `data:${ct};base64,${buf.toString("base64")}`;
+}
 
 // ----------------------------------------------------------------------------
 // Field-type constants (must match the Rust `FieldType` snake_case wire values).
@@ -112,6 +131,7 @@ const SERVICES = [
   { id: "google", name: "Google", aliases: ["gmail", "gsuite", "google workspace", "youtube account"], recommended_fields: emailLogin2fa() },
   { id: "facebook", name: "Facebook", aliases: ["fb", "meta"], recommended_fields: userOrEmail2fa() },
   { id: "instagram", name: "Instagram", aliases: ["ig", "insta", "meta"], recommended_fields: userOrEmail2fa() },
+  { id: "threads", name: "Threads", aliases: ["meta", "instagram threads", "ig threads"], recommended_fields: userOrEmail2fa() },
   { id: "x", name: "X (Twitter)", aliases: ["twitter", "tweet"], recommended_fields: userOrEmail2fa() },
   { id: "linkedin", name: "LinkedIn", aliases: ["li"], recommended_fields: emailLogin2fa() },
   { id: "microsoft", name: "Microsoft", aliases: ["msft", "outlook", "hotmail", "live", "office365", "azure ad"], recommended_fields: emailLogin2fa() },
@@ -296,6 +316,7 @@ const DOMAIN_FALLBACK = Object.freeze({
   kiro: "kiro.dev",
   datablitz: "datablitz.com.ph",
   onlinejobs: "onlinejobs.ph",
+  threads: "threads.net",
 });
 
 /**
@@ -465,30 +486,38 @@ async function main() {
 
   for (const s of SERVICES) {
     const icon = `${s.id}.svg`;
-    const fetched = await fetchBrandIcon(slugFor(s));
 
     let svg = "";
     let color = "";
     let iconData = "";
     let fileContent;
-    if (fetched) {
-      svg = fetched.svg;
-      color = fetched.color;
-      fileContent = fetched.svg;
+
+    if (LOCAL_ICON_OVERRIDES[s.id]) {
+      // Bundled high-quality logo wins over any online fetch.
+      iconData = await localIconDataUrl(LOCAL_ICON_OVERRIDES[s.id]);
+      fileContent = svgForService({ id: s.id, name: s.name });
       realLogos++;
-    } else if (DOMAIN_FALLBACK[s.id]) {
-      // No Simple Icons match — try the site favicon as a raster logo.
-      const data = await fetchFavicon(DOMAIN_FALLBACK[s.id]);
-      if (data) {
-        iconData = data;
+    } else {
+      const fetched = await fetchBrandIcon(slugFor(s));
+      if (fetched) {
+        svg = fetched.svg;
+        color = fetched.color;
+        fileContent = fetched.svg;
         realLogos++;
+      } else if (DOMAIN_FALLBACK[s.id]) {
+        // No Simple Icons match — try the site favicon as a raster logo.
+        const data = await fetchFavicon(DOMAIN_FALLBACK[s.id]);
+        if (data) {
+          iconData = data;
+          realLogos++;
+        } else {
+          fallbacks.push(s.id);
+        }
+        fileContent = svgForService({ id: s.id, name: s.name });
       } else {
+        fileContent = svgForService({ id: s.id, name: s.name });
         fallbacks.push(s.id);
       }
-      fileContent = svgForService({ id: s.id, name: s.name });
-    } else {
-      fileContent = svgForService({ id: s.id, name: s.name });
-      fallbacks.push(s.id);
     }
 
     services.push({

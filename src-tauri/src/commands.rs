@@ -799,8 +799,8 @@ impl ClipboardSink for AppHandle {
 /// Windows: place `text` on the clipboard and tag it so the OS excludes it from
 /// Clipboard History (Win+V) and Cloud Clipboard.
 ///
-/// All operations run inside a **single** clipboard session (open → empty → set
-/// text → set exclusion markers → close on drop), because Windows snapshots the
+/// All operations run inside a **single** clipboard session (open → set text →
+/// add exclusion markers → close on drop), because Windows snapshots the
 /// clipboard when the session closes — the markers must already be present then,
 /// or history/cloud would capture the secret before we could opt out.
 ///
@@ -808,26 +808,34 @@ impl ClipboardSink for AppHandle {
 /// `ExcludeClipboardContentFromMonitorProcessing` signals "sensitive, don't
 /// monitor", and `CanIncludeInClipboardHistory` / `CanUploadToCloudClipboard`
 /// set to a `0` DWORD explicitly disable history capture and cloud upload.
+///
+/// IMPORTANT: the markers are written with [`raw::set_without_clear`], NOT
+/// [`raw::set`]. `raw::set` calls `EmptyClipboard()` before every write, so
+/// using it for the markers would wipe the Unicode text we just placed — the
+/// clipboard would end up holding only a marker and no pastable text. Writing
+/// the text first (which clears once) and then *appending* the markers without
+/// clearing keeps both on the clipboard together.
 #[cfg(windows)]
 fn set_clipboard_excluded(text: &str) -> Result<(), String> {
     use clipboard_win::{formats, raw, register_format, Clipboard, Setter};
 
     let _clip = Clipboard::new_attempts(10)
         .map_err(|e| format!("could not open the clipboard: {e}"))?;
-    raw::empty().map_err(|e| format!("could not reset the clipboard: {e}"))?;
 
+    // Writes CF_UNICODETEXT; this clears the clipboard once before setting.
     formats::Unicode
         .write_clipboard(&text)
         .map_err(|e| format!("clipboard write failed: {e}"))?;
 
+    // Append the exclusion markers WITHOUT clearing, so the text above survives.
     if let Some(fmt) = register_format("ExcludeClipboardContentFromMonitorProcessing") {
-        let _ = raw::set(fmt.get(), &[0u8; 4]);
+        let _ = raw::set_without_clear(fmt.get(), &[0u8; 4]);
     }
     if let Some(fmt) = register_format("CanIncludeInClipboardHistory") {
-        let _ = raw::set(fmt.get(), &0u32.to_ne_bytes());
+        let _ = raw::set_without_clear(fmt.get(), &0u32.to_ne_bytes());
     }
     if let Some(fmt) = register_format("CanUploadToCloudClipboard") {
-        let _ = raw::set(fmt.get(), &0u32.to_ne_bytes());
+        let _ = raw::set_without_clear(fmt.get(), &0u32.to_ne_bytes());
     }
     Ok(())
 }
